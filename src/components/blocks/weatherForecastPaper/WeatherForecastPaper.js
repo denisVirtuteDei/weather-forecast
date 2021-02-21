@@ -1,32 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Typography } from '@material-ui/core'
+import { DateTime } from '../currentDateTime/DateTime'
 import { UserMenu } from '../userMenu/UserMenu'
 import { MyGrid } from './style'
 
 
 export const WeatherForecastPaper = (props) => {
 
+
+
     return (
-        <MyGrid container spacing={2} direction="row">
-            <Grid item xs container justify='flex-end'>
+        <MyGrid container spacing={2}>
+            <Grid item md={12} container justify='flex-end' style={{ maxHeight: '25%' }}>
                 <UserMenu />
             </Grid>
             <Grid item xs={12} container >
                 <Grid item xs={6} container direction='column' alignItems='center'>
-                    <Typography gutterBottom variant="subtitle1">
-                        Current time
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                        Current date
-                    </Typography>
+                    <DateTime />
                 </Grid>
                 <Grid item xs={6} container justify='flex-end'>
-                    <Typography variant="subtitle1">
+                    <div style={{fontSize: 24, paddingRight: 30}}>
                         Current sity
-                    </Typography>
+                    </div>
                 </Grid>
             </Grid>
-            <Grid item xs container alignItems='center' >
+            <Grid item xs={12} container alignItems='center'>
                 <Grid item sm={4} container justify='center'>
                     <Typography variant="subtitle1" >
                         Today

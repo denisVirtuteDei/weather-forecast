@@ -29,10 +29,10 @@ export const UserMenu = (props) => {
                 id="customized-menu"
                 anchorEl={anchorEl}
                 keepMounted
-                open={!!anchorEl}
+                open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <StyledMenuItem>
+                <StyledMenuItem onClick={handleClose}>
                     <ListItemText primary="Logout" />
                 </StyledMenuItem>
             </StyledMenu>

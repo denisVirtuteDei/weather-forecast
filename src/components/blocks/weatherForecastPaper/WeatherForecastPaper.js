@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
-import { DateTime } from '../currentDateTime/DateTime'
-import { UserMenu } from '../userMenu/UserMenu'
+import { DateTime } from '../CurrentDateTime/DateTime'
+import { UserMenu } from '../UserMenu/UserMenu'
 import { MyGrid } from './style'
 
 
 export const WeatherForecastPaper = (props) => {
 
-
-
     return (
         <MyGrid container spacing={2}>
             <Grid item md={12} container justify='flex-end' style={{ maxHeight: '25%' }}>
-                <UserMenu />
+                <UserMenu firebase={props.firebase}/>
             </Grid>
             <Grid item xs={12} container >
                 <Grid item xs={6} container direction='column' alignItems='center'>

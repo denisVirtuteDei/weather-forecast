@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Grid } from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 
-export const MyGrid = styled(Grid)`
+export const CentredPaper = styled(Paper)`
     width: 700px;
     height: 500px;
     position: absolute;

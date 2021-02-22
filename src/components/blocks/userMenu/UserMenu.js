@@ -14,6 +14,11 @@ export const UserMenu = (props) => {
         setAnchorEl(null);
     };
 
+    const handleSignOutClick = () => {
+        props.firebase.firebase.auth().signOut();
+        handleClose();
+    }
+
     return (
         <div>
             <Button
@@ -32,7 +37,7 @@ export const UserMenu = (props) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <StyledMenuItem onClick={handleClose}>
+                <StyledMenuItem onClick={handleSignOutClick}>
                     <ListItemText primary="Logout" />
                 </StyledMenuItem>
             </StyledMenu>

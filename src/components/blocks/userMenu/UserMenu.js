@@ -1,11 +1,18 @@
 import React from 'react'
-import { Button, ListItemText } from '@material-ui/core'
-import { StyledMenu, StyledMenuItem } from './style'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Button, ListItemText } from '@material-ui/core';
+import { StyledMenu, StyledMenuItem } from './style';
+import { singOutUsingFirebase } from '../../../firebase';
+import { signOutUser } from '../../../actions/user';
 
 export const UserMenu = (props) => {
 
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -15,8 +22,12 @@ export const UserMenu = (props) => {
     };
 
     const handleSignOutClick = () => {
-        props.firebase.firebase.auth().signOut();
         handleClose();
+
+        dispatch(signOutUser());
+        singOutUsingFirebase();
+        
+        history.push("/signIn");
     }
 
     return (
@@ -28,7 +39,9 @@ export const UserMenu = (props) => {
                 color='secondary'
                 onClick={handleClick}
             >
-                Open Menu
+                {
+                    user.name
+                }
             </Button>
             <StyledMenu
                 id="customized-menu"

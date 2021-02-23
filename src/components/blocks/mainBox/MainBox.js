@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
 
-export default (props) => (
+export const MainBox = (props) => (
     <Container children={props.children} />
 )

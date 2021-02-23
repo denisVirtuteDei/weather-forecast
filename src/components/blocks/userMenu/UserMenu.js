@@ -31,7 +31,7 @@ export const UserMenu = (props) => {
     }
 
     return (
-        <div>
+        <div style={{marginTop: 10, marginRight: 10}}>
             <Button
                 aria-controls="customized-menu"
                 aria-haspopup="true"
@@ -40,7 +40,7 @@ export const UserMenu = (props) => {
                 onClick={handleClick}
             >
                 {
-                    user.name
+                    user.name || 'Anonymous'
                 }
             </Button>
             <StyledMenu

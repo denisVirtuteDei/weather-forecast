@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { CentredPaper } from './style'
-import MainBox from '../MainBox/MainBox';
+import { MainBox } from '../MainBox/MainBox';
 import { signInAnonUser } from '../../../actions/user'
 
 
@@ -36,12 +36,19 @@ export const SingInPaper = (props) => {
                     <Grid item xs={12}>
                         <h1>Sign in</h1>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <button
                             data-testid="signin-anon"
                             onClick={signIn}
                         >
                             Sign In Anonymously
+                    </button>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <button
+                            data-testid="signin-via-google"
+                        >
+                            Sign In Via Google Account
                     </button>
                     </Grid>
                 </Grid>

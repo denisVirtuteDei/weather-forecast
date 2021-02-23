@@ -1,68 +1,53 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 
-import { MyGrid } from './style'
-import MainBox from '../MainBox/MainBox'
+import { CenteredGrid } from './style'
+import { MainBox } from '../MainBox/MainBox'
 import { UserMenu } from '../UserMenu/UserMenu'
 import { DateTime } from '../CurrentDateTime/DateTime'
+import { CurrentCity } from '../CurrentCity/CurrentCity'
 
 
 export const WeatherForecastPaper = (props) => {
 
     return (
         <MainBox>
-            <MyGrid container spacing={2}>
-                <Grid item md={12} container justify='flex-end' style={{ maxHeight: '25%' }}>
-                    <UserMenu />
-                </Grid>
-                <Grid item xs={12} container >
-                    <Grid item xs={6} container direction='column' alignItems='center'>
+            <CenteredGrid container spacing={2}>
+                <Grid item md={12} container style={{ maxHeight: '45%' }}>
+                    <Grid item xs={12} container justify='flex-end'>
+                        <UserMenu />
+                    </Grid>
+                    <Grid item xs={12} container justify='space-around'>
                         <DateTime />
-                    </Grid>
-                    <Grid item xs={6} container justify='flex-end'>
-                        <div style={{ fontSize: 24, paddingRight: 30 }}>
-                            Current sity
-                    </div>
+                        <CurrentCity />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} container alignItems='center'>
-                    <Grid item sm={4} container justify='center'>
+                <Grid item xs={12} container alignItems='center' justify='space-between'>
+                    <Grid item xs={4} container justify='center'>
                         <Typography variant="subtitle1" >
                             Today
-                    </Typography>
+                        </Typography>
                     </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1">
-                            Tomorrow
+                    <Typography variant="subtitle1">
+                        Tomorrow
+                        </Typography>
+                    <Typography variant="subtitle1">
+                        3th day
                     </Typography>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1">
-                            3th day
+                    <Typography variant="subtitle1">
+                        4th day
                     </Typography>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1">
-                            4th day
+                    <Typography variant="subtitle1">
+                        5th day
                     </Typography>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1">
-                            5th day
+                    <Typography variant="subtitle1">
+                        6th day
                     </Typography>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1">
-                            6th day
+                    <Typography variant="subtitle1">
+                        7th day
                     </Typography>
-                    </Grid>
-                    <Grid item xs>
-                        <Typography variant="subtitle1">
-                            7th day
-                    </Typography>
-                    </Grid>
                 </Grid>
-            </MyGrid>
+            </CenteredGrid>
         </MainBox>
     )
 }

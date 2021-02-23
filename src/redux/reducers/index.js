@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
-import user from './userReducer'
+import user from './userReducer';
+import geolocation from './geolocationReducer';
 
-export default combineReducers({ user })
+export default combineReducers({ 
+    user,
+    geolocation
+})

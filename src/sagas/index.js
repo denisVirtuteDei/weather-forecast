@@ -5,15 +5,14 @@ import {
     signInUserWithGoogleRequestWatcher
 } from './user';
 
-import {
-    getUserGeolocationWatcher
-} from './geolocation';
-
+import { getUserGeolocationWatcher } from './geolocation';
+import { getCityForecastRequestWatcher } from './cityForecast';
 
 export default function* rootSaga() {
     yield all([
         signInAnonUserRequestWatcher(),
         signInUserWithGoogleRequestWatcher(),
-        getUserGeolocationWatcher()
+        getUserGeolocationWatcher(),
+        getCityForecastRequestWatcher(),
     ])
 }

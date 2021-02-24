@@ -1,3 +1,4 @@
 export * from './datetimeCalculation';
 export * from './ipRequest';
-export * from './geolocation'
+export * from './geolocationRequest';
+export * from './cityForecast';

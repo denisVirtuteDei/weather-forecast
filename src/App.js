@@ -10,7 +10,7 @@ import {
 
 import PrivateRoute from './components/wrappers/PrivateRoute';
 import { SingInPaper } from "./components/blocks/SignInPaper/SignInPaper";
-import { WeatherForecastPaper } from "./components/blocks/WeatherForecastPaper/WeatherForecastPaper";
+import { WeatherForecastPaper } from "./components/blocks/WeatherForecast/WeatherForecastPaper";
 import { ROUTE_TO_FORECAST, ROUTE_TO_SIGN_IN } from './constants';
 
 const store = makeStore();

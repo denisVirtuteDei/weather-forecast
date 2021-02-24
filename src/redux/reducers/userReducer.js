@@ -11,7 +11,7 @@ const initUserState = {
     isLogged: false,
 }
 
-export default function user(state = initUserState, action) {
+export default function userReducer(state = initUserState, action) {
     switch (action.type) {
         case SING_IN_ANON_USER_REQUEST:
             return { ...state }

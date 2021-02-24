@@ -7,7 +7,7 @@ const initGeoState = {
     userGeolocation: {}
 }
 
-export default function geolocation(state = initGeoState, action) {
+export default function geolocationReducer(state = initGeoState, action) {
     switch (action.type) {
         case SET_USER_GEOLOCATION_INFO:
             return {

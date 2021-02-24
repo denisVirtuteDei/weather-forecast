@@ -9,6 +9,8 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
     "axios": "^0.21.1",
+    "axios-cache-adapter": "^2.7.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "firebase": "^8.2.9",
     "public-ip": "^4.0.3",
     "react": "^17.0.1",

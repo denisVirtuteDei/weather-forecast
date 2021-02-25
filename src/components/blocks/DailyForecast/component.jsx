@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Grid, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCityForecast } from '../../../actions/cityForecast';
+import DailyForecastItem from '../DailyForecastItem';
 
 //import DailyForecastSuspense from '../DailyForecastSuspense';
 
@@ -23,20 +23,9 @@ export const DailyForecast = (props) => {
     return (
         <>
             {
-                dailyForecastList.map((el, index) => {
-
-                    return (
-                        index === 0 ? (
-                            <Grid item xs={4} container justify='center'>
-                                <div>{ }</div>
-                            </Grid>
-                        ) : (
-                                <Typography variant="subtitle1">
-                                    Tomorrow
-                                </Typography>
-                            )
-                    )
-                })
+                dailyForecastList.map((el, index) => (
+                    <DailyForecastItem key={el.dt} index={index} {...el} />
+                ))
             }
         </>
     )

@@ -13,6 +13,5 @@ export function* getUserGeolocationWatcher() {
 function* getUserGeolocationWorker() {
     const ip = yield call(getPublicIp);
     const response = yield call(getGeolocation, ip);
-    const geo = response.data;
-    yield put(setUserGeolocationInfo(geo));
+    yield put(setUserGeolocationInfo(response.data));
 }

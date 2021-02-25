@@ -21,7 +21,7 @@ export const DateTime = (props) => {
                     `${date.hour}:${date.min < 10 ? '0'.concat(date.min) : date.min}`
                 } 
             </div>
-            <div style={{ fontSize: 24 }}> {`${date.day}-${date.month}-${date.year}`} </div>
+            <div style={{ fontSize: 24 }}> {`${date.day}-${date.month + 1}-${date.year}`} </div>
         </div>
     )
 }

@@ -13,8 +13,8 @@ export const WeatherForecastPaper = (props) => {
 
     return (
         <MainBox>
-            <CenteredGrid container spacing={2}>
-                <Grid item md={12} container style={{ maxHeight: '45%' }}>
+            <CenteredGrid container spacing={3} direction='column' justify='space-between'>
+                <Grid item xs container style={{ maxHeight: '45%' }}>
                     <Grid item xs={12} container justify='flex-end'>
                         <UserMenu />
                     </Grid>
@@ -23,7 +23,7 @@ export const WeatherForecastPaper = (props) => {
                         <CurrentCity />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} container alignItems='stretch' justify='space-between'>
+                <Grid item xs container alignItems='stretch' justify='space-between'  style={{ maxHeight: '40%' }}>
                     <DailyForecast />
                 </Grid>
             </CenteredGrid>

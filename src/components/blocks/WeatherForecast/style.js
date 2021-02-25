@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import { Grid } from '@material-ui/core'
 
 export const CenteredGrid = styled(Grid)`
-    width: 700px;
-    height: 500px;
+    width: 900px;
+    height: 650px;
     position: absolute;
     top: 50%;
     left: 50%;

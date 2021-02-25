@@ -25,3 +25,9 @@ export const TodayDiv = styled.div`
         justify-self: end;
     }
 `
+
+export const WeatherIcon = styled.img.attrs((props) => ({
+    src: `http://openweathermap.org/img/wn/${props.src}@2x.png`
+}))`
+    alt: ${props => props.alt};
+`

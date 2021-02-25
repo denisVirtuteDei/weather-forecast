@@ -18,8 +18,6 @@ export const DailyForecast = (props) => {
         }
     }, [geolocation.city])
 
-    //if (1 > 0) return (<DailyForecastSuspense />)
-
     return (
         <>
             {

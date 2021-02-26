@@ -3,10 +3,9 @@ import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { CentredPaper } from './style'
-import { MainBox } from '../MainBox/MainBox';
+import CenteredPaper from '../CenteredPaper';
 import { signInAnonUser } from '../../../actions/user'
-
+import { CENTERED_PAPER_IMG } from '../../../constants';
 
 
 export const SingInPaper = (props) => {
@@ -30,29 +29,27 @@ export const SingInPaper = (props) => {
     if (user.isLogged) return null
 
     return (
-        <MainBox>
-            <CentredPaper>
-                <Grid container spacing={4}>
-                    <Grid item xs={12}>
-                        <h1>Sign in</h1>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <button
-                            data-testid="signin-anon"
-                            onClick={signIn}
-                        >
-                            Sign In Anonymously
-                    </button>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <button
-                            data-testid="signin-via-google"
-                        >
-                            Sign In Via Google Account
-                    </button>
-                    </Grid>
+        <CenteredPaper img={CENTERED_PAPER_IMG}>
+            <Grid container spacing={4}>
+                <Grid item xs={12}>
+                    <h1>Sign in</h1>
                 </Grid>
-            </CentredPaper>
-        </MainBox>
+                <Grid item xs={6}>
+                    <button
+                        data-testid="signin-anon"
+                        onClick={signIn}
+                    >
+                        Sign In Anonymously
+                    </button>
+                </Grid>
+                <Grid item xs={6}>
+                    <button
+                        data-testid="signin-via-google"
+                    >
+                        Sign In Via Google Account
+                    </button>
+                </Grid>
+            </Grid>
+        </CenteredPaper>
     )
 }

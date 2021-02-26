@@ -12,7 +12,7 @@ export const UserMenu = (props) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const [anchorEl, setAnchorEl] = React.useState(null);
-    
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -26,12 +26,12 @@ export const UserMenu = (props) => {
 
         dispatch(signOutUser());
         singOutUsingFirebase();
-        
+
         history.push("/signIn");
     }
 
     return (
-        <div style={{marginTop: 10, marginRight: 10}}>
+        <div style={{ marginTop: 10, marginRight: 10 }}>
             <Button
                 aria-controls="customized-menu"
                 aria-haspopup="true"

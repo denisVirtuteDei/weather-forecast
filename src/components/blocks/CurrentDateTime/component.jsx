@@ -12,7 +12,7 @@ export const DateTime = (props) => {
         }, 1000)
 
         return () => clearInterval(timerId);
-    })
+    }, [])
 
     return (
         <div>

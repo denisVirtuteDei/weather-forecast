@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import { ROUTE_TO_SIGN_IN } from '../../constants';
 import { checkUserAuth } from '../../firebase'
 
 
@@ -27,7 +28,7 @@ export default function PrivateRoute({ children, ...rest }) {
                     ? (children)
                     : (
                         <Redirect to={{
-                            pathname: '/signIn',
+                            pathname: ROUTE_TO_SIGN_IN,
                             state: { from: location }
                         }} />
                     )

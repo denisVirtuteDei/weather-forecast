@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCityForecast } from '../../../actions/cityForecast';
 import DailyForecastItem from '../DailyForecastItem';
-
-//import DailyForecastSuspense from '../DailyForecastSuspense';
+import DailyForecastSuspense from '../DailyForecastSuspense';
 
 
 export const DailyForecast = (props) => {
@@ -13,10 +12,14 @@ export const DailyForecast = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (Object.keys(geolocation).length) {
+        if (geolocation.city && geolocation.city !== null) {
             dispatch(getCityForecast(geolocation.city));
         }
     }, [geolocation.city])
+
+    if (!dailyForecastList.length || !geolocation.city) {
+        return <DailyForecastSuspense />
+    }
 
     return (
         <>

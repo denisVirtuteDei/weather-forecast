@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { Grid } from '@material-ui/core';
 
-export const CenteredImgGrid = styled(Grid)`
+export const ImgDiv = styled.div`
     width: 900px;
     height: 650px;
     position: absolute;
@@ -12,9 +11,9 @@ export const CenteredImgGrid = styled(Grid)`
     background-color: #F0E68C;
 
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
 `
+
 //background-image: url(${props => props.img});
+// background-size: cover;
+// background-position: center;
+// background-repeat: no-repeat;

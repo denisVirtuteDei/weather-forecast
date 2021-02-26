@@ -2,9 +2,6 @@ import React from 'react';
 
 
 export const DailyForecastSuspense = (props) => {
-
-
-
     return (
         <>
             <div>

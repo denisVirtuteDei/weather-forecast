@@ -4,7 +4,7 @@ import {
     SING_OUT_USER_REQUEST,
     SING_IN_ANON_USER_REQUEST,
     SING_IN_USER_VIA_GOOGLE_REQUEST,
-} from '../../actions/user'
+} from '../../actions/user';
 
 const initUserState = {
     email: '',

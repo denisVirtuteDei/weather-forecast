@@ -1,5 +1,5 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { getGeolocation, getPublicIp } from '../services/axiosRequests'
+import { getGeolocation, getPublicIp } from '../services/axiosRequests';
 
 import {
     GET_USER_GEOLOCATION_REQUEST,

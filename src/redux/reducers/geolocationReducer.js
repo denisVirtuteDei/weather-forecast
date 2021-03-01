@@ -1,7 +1,7 @@
 import {
     GET_USER_GEOLOCATION_REQUEST,
     SET_USER_GEOLOCATION_INFO
-} from '../../actions/geolocation'
+} from '../../actions/geolocation';
 
 const initGeoState = {
     userGeolocation: {}

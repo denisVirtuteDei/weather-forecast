@@ -1,7 +1,7 @@
 import {
     GET_CITY_FORECAST_REQUEST,
     SET_CITY_FORECAST
-} from '../../actions/cityForecast'
+} from '../../actions/cityForecast';
 
 const initForecastState = {
     cityForecast: []

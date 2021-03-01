@@ -7,17 +7,18 @@ import {
 
 import {getForecastByCityName} from '../services/axiosRequests';
 
-import { filteringDailyForecast } from '../utils/dailyForecastFiltering';
+import { filteringDailyForecast } from '../utils/dailyForecastMappers';
 
-function* getCityForecastWorker({ payload }) {
-    const response = yield call(getForecastByCityName, payload);
-    const dailyForecastList = yield call(filteringDailyForecast, response.data);
-    yield put(setCityForecast(dailyForecastList));
-}
 
 export function* getCityForecastRequestWatcher() {
     yield takeEvery(
         GET_CITY_FORECAST_REQUEST,
         getCityForecastWorker
     );
+}
+
+function* getCityForecastWorker({ payload }) {
+    const response = yield call(getForecastByCityName, payload);
+    const dailyForecastList = yield call(filteringDailyForecast, response.data);
+    yield put(setCityForecast(dailyForecastList));
 }

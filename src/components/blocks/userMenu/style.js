@@ -1,5 +1,12 @@
-import React from 'react'
-import { Menu, MenuItem, withStyles } from '@material-ui/core'
+import React from 'react';
+import styled from 'styled-components';
+
+import { Menu, MenuItem, withStyles } from '@material-ui/core';
+
+export const Div = styled.div`
+    margin-top: 10;
+    margin-right: 10;
+`
 
 export const StyledMenu = withStyles({
     paper: { border: '1px solid #d3d4d5', }

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
+import { Div } from './style';
+
 import { datetimeCalculation } from '../../../utils/datetimeCalculation';
 
 
@@ -16,8 +19,8 @@ export const DateTime = (props) => {
 
     return (
         <div>
-            <div style={{ fontSize: 30 }}>{`${date.hour}:${date.min}`}</div>
-            <div style={{ fontSize: 24 }}>{`${date.day}-${date.month}-${date.year}`}</div>
+            <Div fontsize='1.5rem'>{`${date.hour}:${date.min}`}</Div>
+            <Div fortsize='1rem'>{`${date.day}-${date.month}-${date.year}`}</Div>
         </div>
     )
 }

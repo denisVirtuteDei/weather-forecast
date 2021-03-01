@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-//import { useSelector } from 'react-redux';
+
 import { CenteredDiv, TodayDiv, WeatherIcon } from './style';
 
-const epochToShortWeekday = dt => {
-    const date = new Date(dt * 1000);
-    return date.toLocaleDateString('en', { weekday: 'short' }).toUpperCase();
-}
-const tempToAcceptableForm = temp => `${Math.round(temp)}°`;
+import {
+    epochToShortWeekday,
+    tempToAcceptableForm
+} from '../../../utils/dailyForecastMappers';
+
 
 export default (props) => {
 

@@ -1,10 +1,15 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, ListItemText } from '@material-ui/core';
+
+import { Div } from '../CurrentDateTime/style';
 import { StyledMenu, StyledMenuItem } from './style';
+import { Button, ListItemText } from '@material-ui/core';
+
 import { singOutUsingFirebase } from '../../../utils/firebase';
+
 import { signOutUser } from '../../../actions/user';
+
 
 export const UserMenu = (props) => {
 
@@ -27,31 +32,31 @@ export const UserMenu = (props) => {
         dispatch(signOutUser());
         singOutUsingFirebase();
 
-        history.push("/signIn");
+        history.push('/signIn');
     }
 
     return (
-        <div style={{ marginTop: 10, marginRight: 10 }}>
+        <Div>
             <Button
-                aria-controls="customized-menu"
-                aria-haspopup="true"
-                variant="contained"
+                aria-controls='customized-menu'
+                aria-haspopup='true'
+                variant='contained'
                 color='secondary'
                 onClick={handleClick}
             >
                 {user.name || user.email || 'Anonymus'}
             </Button>
             <StyledMenu
-                id="customized-menu"
+                id='customized-menu'
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
                 <StyledMenuItem onClick={handleSignOutClick}>
-                    <ListItemText primary="Logout" />
+                    <ListItemText primary='Logout' />
                 </StyledMenuItem>
             </StyledMenu>
-        </div>
+        </Div>
     )
 }

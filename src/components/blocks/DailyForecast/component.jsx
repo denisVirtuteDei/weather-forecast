@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCityForecast } from '../../../actions/cityForecast';
+
 import DailyForecastItem from '../DailyForecastItem';
 import DailyForecastSuspense from '../DailyForecastSuspense';
+
+import { getCityForecast } from '../../../actions/cityForecast';
 
 
 export const DailyForecast = (props) => {

@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom';
 
+import { Grid } from '@material-ui/core';
+
+import { Div } from '../CurrentDateTime/style';
 import CenteredImgGrid from '../CenteredImgGrid';
-import { signInAnonUser, signInUserViaGoogle } from '../../../actions/user'
+
 import { CENTERED_PAPER_IMG } from '../../../constants';
+import { signInAnonUser, signInUserViaGoogle } from '../../../actions/user'
 
 
 export const SingInPaper = (props) => {
@@ -33,12 +36,20 @@ export const SingInPaper = (props) => {
     if (user.isLogged) return null
 
     return (
-        <CenteredImgGrid className='border-box' container spacing={4} direction='column' justify='center' alignItems='center' img={CENTERED_PAPER_IMG}>
-            <div style={{ textAlign: 'center' }}>
-                <Grid item xs style={{ margin: 15 }}>
+        <CenteredImgGrid
+            className='border-box'
+            container
+            spacing={4}
+            direction='column'
+            justify='center'
+            alignItems='center'
+            img={CENTERED_PAPER_IMG}
+        >
+            <Div>
+                <Grid className='grid-item-margin' item xs>
                     <h2>Sign in</h2>
                 </Grid>
-                <Grid item xs style={{ margin: 15 }}>
+                <Grid className='grid-item-margin' item xs>
                     <button
                         data-testid="signin-anon"
                         onClick={anonSignIn}
@@ -46,7 +57,7 @@ export const SingInPaper = (props) => {
                         Sign In Anonymously
                     </button>
                 </Grid>
-                <Grid item xs style={{ margin: 15 }}>
+                <Grid className='grid-item-margin' item xs>
                     <button
                         data-testid="signin-via-google"
                         onClick={googleSignIn}
@@ -54,7 +65,7 @@ export const SingInPaper = (props) => {
                         Sign In Via Google Account
                     </button>
                 </Grid>
-            </div>
+            </Div>
         </CenteredImgGrid>
     )
 }

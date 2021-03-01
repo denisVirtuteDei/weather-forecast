@@ -1,11 +1,14 @@
 import React from 'react';
+
+import { ReducedGrid } from './style';
 import { Grid } from '@material-ui/core';
 
 import UserMenu from '../UserMenu';
 import CurrentCity from '../CurrentCity';
 import DateTime from '../CurrentDateTime';
-import {CenteredImgGrid} from './style';
 import DailyForecast from '../DailyForecast';
+import CenteredImgGrid from '../CenteredImgGrid';
+
 import { CENTERED_PAPER_IMG } from '../../../constants';
 
 
@@ -13,8 +16,14 @@ import { CENTERED_PAPER_IMG } from '../../../constants';
 export const WeatherForecastPaper = (props) => {
 
     return (
-        <CenteredImgGrid container spacing={3} direction='column' justify='space-between' img={CENTERED_PAPER_IMG}>
-            <Grid item xs container style={{ maxHeight: '45%' }}>
+        <CenteredImgGrid
+            container
+            spacing={3}
+            direction='column'
+            justify='space-between'
+            img={CENTERED_PAPER_IMG}
+        >
+            <ReducedGrid item xs container maxheight='45%'>
                 <Grid item xs={12} container justify='flex-end'>
                     <UserMenu />
                 </Grid>
@@ -22,10 +31,17 @@ export const WeatherForecastPaper = (props) => {
                     <DateTime />
                     <CurrentCity />
                 </Grid>
-            </Grid>
-            <Grid item xs container alignItems='stretch' justify='space-between' style={{ maxHeight: '40%' }}>
+            </ReducedGrid>
+            <ReducedGrid
+                item
+                xs
+                container
+                alignItems='stretch'
+                justify='space-between'
+                maxheight='40%'
+            >
                 <DailyForecast />
-            </Grid>
+            </ReducedGrid>
         </CenteredImgGrid>
     )
 }

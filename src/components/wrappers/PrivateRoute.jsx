@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
+
+import { checkUserAuth } from '../../utils/firebase';
+
 import { ROUTE_TO_SIGN_IN } from '../../constants';
-import { checkUserAuth } from '../../utils/firebase'
 
 
 export default function PrivateRoute({ children, ...rest }) {

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
 export const Div = styled.div`
-    font-size: ${props => props.fontsize};
+    .time-div {
+        font-size: 2rem;
+    }    
+    .date-div {
+        font-size: 1.5rem;
+    }    
 `

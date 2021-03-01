@@ -1,10 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Div } from '../CurrentDateTime/style';
-import { StyledMenu, StyledMenuItem } from './style';
 import { Button, ListItemText } from '@material-ui/core';
+
+import { Div } from './style';
+import { StyledMenu, StyledMenuItem } from './style';
 
 import { singOutUsingFirebase } from '../../../utils/firebase';
 

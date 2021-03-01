@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Div } from './style';
+
 import { getUserGeolocationRequest } from '../../../actions/geolocation'
 
 
@@ -15,13 +17,13 @@ export const CurrentCity = (props) => {
     }, [])
 
     return (
-        <div >
-            <div style={{ fontSize: 24 }}>
+        <Div >
+            <div className='city-div'>
                 {geolocation.city || 'City'}
             </div>
-            <div style={{ fontSize: 20 }}>
+            <div className='region-div'>
                 {geolocation.region || 'Region'}
             </div>
-        </div>
+        </Div>
     )
 }

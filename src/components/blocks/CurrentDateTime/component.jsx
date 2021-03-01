@@ -18,9 +18,9 @@ export const DateTime = (props) => {
     }, [])
 
     return (
-        <div>
-            <Div fontsize='1.5rem'>{`${date.hour}:${date.min}`}</Div>
-            <Div fortsize='1rem'>{`${date.day}-${date.month}-${date.year}`}</Div>
-        </div>
+        <Div>
+            <div className='time-div'>{`${date.hour}:${date.min}`}</div>
+            <div className='date-div'>{`${date.day}-${date.month}-${date.year}`}</div>
+        </Div>
     )
 }

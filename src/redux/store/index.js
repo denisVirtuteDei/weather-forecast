@@ -2,8 +2,9 @@ import createSagaMiddleware from 'redux-saga';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import rootReducer from '../reducers';
 import rootSaga from '../../sagas';
+import rootReducer from '../reducers';
+
 import { loadState, saveState } from '../../utils/localstorage';
 
 

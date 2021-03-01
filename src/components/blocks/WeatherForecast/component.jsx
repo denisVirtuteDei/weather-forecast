@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { ReducedGrid } from './style';
 import { Grid } from '@material-ui/core';
+
+import { ReducedGrid } from './style';
 
 import UserMenu from '../UserMenu';
 import CurrentCity from '../CurrentCity';
@@ -10,7 +11,6 @@ import DailyForecast from '../DailyForecast';
 import CenteredImgGrid from '../CenteredImgGrid';
 
 import { CENTERED_PAPER_IMG } from '../../../constants';
-
 
 
 export const WeatherForecastPaper = (props) => {

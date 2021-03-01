@@ -9,7 +9,8 @@ export const CurrentCity = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getUserGeolocationRequest());
+        if (!geolocation.city)
+            dispatch(getUserGeolocationRequest());
     }, [])
 
     return (

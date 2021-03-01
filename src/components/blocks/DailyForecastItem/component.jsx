@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 //import { useSelector } from 'react-redux';
 import { CenteredDiv, TodayDiv, WeatherIcon } from './style';
 
-const toShortWeekday = date => date.toLocaleDateString('en', { weekday: 'short' }).toUpperCase();
-const tempToAcceptableForm = temp => `${temp}℃`;
+const epochToShortWeekday = dt => {
+    const date = new Date(dt * 1000);
+    return date.toLocaleDateString('en', { weekday: 'short' }).toUpperCase();
+}
+const tempToAcceptableForm = temp => `${Math.round(temp)}°`;
 
 export default (props) => {
 
@@ -13,7 +16,7 @@ export default (props) => {
     const [temp, setTemp] = useState(null);
 
     useEffect(() => {
-        setWeekday(toShortWeekday(new Date(props.dt)));
+        setWeekday(epochToShortWeekday(props.dt));
         setWeatherIcon(props.weather[0].icon);
         setWeatherDesc(props.weather[0].description);
         setTemp(tempToAcceptableForm(props.main.temp));

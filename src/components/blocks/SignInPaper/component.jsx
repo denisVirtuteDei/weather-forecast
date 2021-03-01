@@ -3,8 +3,8 @@ import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom';
 
-import CenteredPaper from '../CenteredPaper';
-import { signInAnonUser } from '../../../actions/user'
+import CenteredImgGrid from '../CenteredImgGrid';
+import { signInAnonUser, signInUserViaGoogle } from '../../../actions/user'
 import { CENTERED_PAPER_IMG } from '../../../constants';
 
 
@@ -16,9 +16,13 @@ export const SingInPaper = (props) => {
     const user = useSelector(state => state.user);
     const { from } = location.state || { from: { pathname: "/" } };
 
-
-    const signIn = () => {
+    const anonSignIn = () => {
         dispatch(signInAnonUser());
+        history.replace(from);
+    }
+
+    const googleSignIn = () => {
+        dispatch(signInUserViaGoogle());
         history.replace(from);
     }
 
@@ -29,27 +33,28 @@ export const SingInPaper = (props) => {
     if (user.isLogged) return null
 
     return (
-        <CenteredPaper img={CENTERED_PAPER_IMG}>
-            <Grid container spacing={4}>
-                <Grid item xs={12}>
-                    <h1>Sign in</h1>
+        <CenteredImgGrid className='border-box' container spacing={4} direction='column' justify='center' alignItems='center' img={CENTERED_PAPER_IMG}>
+            <div style={{ textAlign: 'center' }}>
+                <Grid item xs style={{ margin: 15 }}>
+                    <h2>Sign in</h2>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs style={{ margin: 15 }}>
                     <button
                         data-testid="signin-anon"
-                        onClick={signIn}
+                        onClick={anonSignIn}
                     >
                         Sign In Anonymously
                     </button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs style={{ margin: 15 }}>
                     <button
                         data-testid="signin-via-google"
+                        onClick={googleSignIn}
                     >
                         Sign In Via Google Account
                     </button>
                 </Grid>
-            </Grid>
-        </CenteredPaper>
+            </div>
+        </CenteredImgGrid>
     )
 }

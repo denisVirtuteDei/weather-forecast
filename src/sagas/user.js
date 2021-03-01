@@ -3,13 +3,19 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import {
     signInAnonymouslyUsingFirebase,
     singInWithGoogleAccountUsingFirebase
-} from '../firebase';
+} from '../utils/firebase';
 
 import {
     SING_IN_ANON_USER_REQUEST,
     SING_IN_USER_VIA_GOOGLE_REQUEST,
-    setUserAuthInfo
+    setUserAuthInfo,
+    setUserAuthError
 } from '../actions/user';
+
+import { 
+    mappingUserData, 
+    mappingUserErrorInfo 
+} from '../utils/dataMappers';
 
 export function* signInAnonUserRequestWatcher() {
     yield takeEvery(
@@ -31,8 +37,13 @@ export function* signInUserWithGoogleRequestWatcher() {
 }
 
 function* signInUserViaGoogleWorker() {
-    const data = yield call(singInWithGoogleAccountUsingFirebase);
-    yield put(setUserAuthInfo(data));
+    try {
+        const data = yield call(singInWithGoogleAccountUsingFirebase);
+        yield put(setUserAuthInfo(mappingUserData(data)));
+    } catch (err) {
+        yield put(setUserAuthError(mappingUserErrorInfo(err)));
+    }
+
 }
 
 

@@ -1,9 +1,9 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDxFOiLf9hoQnvLdLvsVRH1JJtVbGatMZY",
-    authDomain: "weather-forecast-72443.firebaseio.com",
+    authDomain: "weather-forecast-72443.firebaseapp.com",
     databaseURL: "https://weather-forecast-72443.firebaseio.com",
     projectId: "weather-forecast-72443",
     storageBucket: "weather-forecast-72443.appspot.com",
@@ -23,6 +23,7 @@ export const singInWithGoogleAccountUsingFirebase = () => {
             const { user } = result
             return user
         })
+        .catch(err => { throw err });
 }
 
 export const signInAnonymouslyUsingFirebase = () => {

@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import UserMenu from '../UserMenu';
 import CurrentCity from '../CurrentCity';
 import DateTime from '../CurrentDateTime';
-import { CenteredImgGrid } from './style';
+import {CenteredImgGrid} from './style';
 import DailyForecast from '../DailyForecast';
 import { CENTERED_PAPER_IMG } from '../../../constants';
 

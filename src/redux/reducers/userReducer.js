@@ -1,14 +1,17 @@
 import {
     SET_USER_AUTH_INFO,
+    SET_USER_AUTH_ERROR,
+    SING_OUT_USER_REQUEST,
     SING_IN_ANON_USER_REQUEST,
     SING_IN_USER_VIA_GOOGLE_REQUEST,
-    SING_OUT_USER_REQUEST
 } from '../../actions/user'
 
 const initUserState = {
     email: '',
     name: '',
     isLogged: false,
+    isError: false,
+    errInfo: ''
 }
 
 export default function userReducer(state = initUserState, action) {
@@ -20,16 +23,26 @@ export default function userReducer(state = initUserState, action) {
         case SET_USER_AUTH_INFO:
             return {
                 ...state,
+                errInfo: '',
+                isError: false,
                 isLogged: true,
-                name: action.payload.name || 'Anonymous',
-                email: action.payload.email
+                name: action.payload.name || '',
+                email: action.payload.email || ''
+            }
+        case SET_USER_AUTH_ERROR:
+            return {
+                ...state,
+                isError: true,
+                errInfo: action.payload,
             }
         case SING_OUT_USER_REQUEST:
             return {
                 ...state,
-                isLogged: false,
                 name: '',
-                email: ''
+                email: '',
+                errInfo: '',
+                isError: false,
+                isLogged: false,
             }
         default: return state;
     }

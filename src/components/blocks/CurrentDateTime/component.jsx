@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { datetimeCalculation } from '../../../services'
+import React, { useEffect, useState } from 'react';
+import { datetimeCalculation } from '../../../utils/datetimeCalculation';
 
 
 export const DateTime = (props) => {
 
-    const [date, setDate] = useState(datetimeCalculation());
+    const [date, setDate] = useState({});
 
     useEffect(() => {
         const timerId = setInterval(() => {
@@ -16,12 +16,8 @@ export const DateTime = (props) => {
 
     return (
         <div>
-            <div style={{ fontSize: 30 }}> 
-                {
-                    `${date.hour}:${date.min < 10 ? '0'.concat(date.min) : date.min}`
-                } 
-            </div>
-            <div style={{ fontSize: 24 }}> {`${date.day}-${date.month + 1}-${date.year}`} </div>
+            <div style={{ fontSize: 30 }}>{`${date.hour}:${date.min}`}</div>
+            <div style={{ fontSize: 24 }}>{`${date.day}-${date.month}-${date.year}`}</div>
         </div>
     )
 }

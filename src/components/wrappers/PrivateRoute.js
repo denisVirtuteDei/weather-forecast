@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { ROUTE_TO_SIGN_IN } from '../../constants';
-import { checkUserAuth } from '../../firebase'
+import { checkUserAuth } from '../../utils/firebase'
 
 
 export default function PrivateRoute({ children, ...rest }) {
@@ -15,7 +15,9 @@ export default function PrivateRoute({ children, ...rest }) {
                 setIsAuth(value);
                 setIsLoading(false);
             })
-            .catch(() => { setIsLoading(false); })
+            .catch(() => { 
+                setIsLoading(false); 
+            })
     }, [])
 
     if (isLoading) return <div>Loading...</div>

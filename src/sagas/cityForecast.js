@@ -5,11 +5,13 @@ import {
     setCityForecast
 } from '../actions/cityForecast';
 
-import { getDailyForecast, getForecastByCityName } from '../services';
+import {getForecastByCityName} from '../services/axiosRequests';
+
+import { filteringDailyForecast } from '../utils/dailyForecastFiltering';
 
 function* getCityForecastWorker({ payload }) {
     const response = yield call(getForecastByCityName, payload);
-    const dailyForecastList = yield call(getDailyForecast, response.data);
+    const dailyForecastList = yield call(filteringDailyForecast, response.data);
     yield put(setCityForecast(dailyForecastList));
 }
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, ListItemText } from '@material-ui/core';
 import { StyledMenu, StyledMenuItem } from './style';
-import { singOutUsingFirebase } from '../../../firebase';
+import { singOutUsingFirebase } from '../../../utils/firebase';
 import { signOutUser } from '../../../actions/user';
 
 export const UserMenu = (props) => {
@@ -22,7 +22,7 @@ export const UserMenu = (props) => {
     };
 
     const handleSignOutClick = () => {
-        handleClose();
+        setAnchorEl(null);
 
         dispatch(signOutUser());
         singOutUsingFirebase();
@@ -39,9 +39,7 @@ export const UserMenu = (props) => {
                 color='secondary'
                 onClick={handleClick}
             >
-                {
-                    user.name || 'Anonymous'
-                }
+                {user.name || user.email || 'Anonymus'}
             </Button>
             <StyledMenu
                 id="customized-menu"

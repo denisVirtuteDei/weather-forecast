@@ -4,23 +4,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
 import '@geoapify/geocoder-autocomplete/styles/minimal.css'
 
-import { getUserGeolocationRequest } from '../../../actions/geolocation';
+import { getUserGeolocationRequest, setCurrentCityInfo } from '../../../actions/geolocation';
 
 const CurrentCity = (props) => {
 
-    const geolocation = useSelector(state => state.geolocation.userGeolocation);
     const dispatch = useDispatch();
-
-
+    const geolocation = useSelector(state => state.geolocation);
+    const [inputCityInfo, setInputCityInfo] = useState(null);
 
     useEffect(() => {
-        if (!geolocation.city)
-            dispatch(getUserGeolocationRequest ());
+        if(!geolocation.isInfoLoaded) {
+            dispatch(getUserGeolocationRequest());
+        } else {
+            setInputCityInfo({...geolocation});
+        }
     }, [])
 
     const onPlaceSelect = value => {
-        //setQuery(value);
-        console.log(value);
+        if (value === null) {
+            setInputCityInfo(value);
+        } else if (value.properties.formatted !== geolocation.formatted) {
+            dispatch(setCurrentCityInfo({...value.properties}));
+        }
     }
 
 
@@ -30,33 +35,10 @@ const CurrentCity = (props) => {
                 placeholder="Enter address here"
                 type='city'
                 placeSelect={onPlaceSelect}
-                value={geolocation.city}
-                //value={query !== null ? query.properties.formatted : ''}
+                value={(inputCityInfo && inputCityInfo.formatted) || geolocation.formatted}
             />
         </GeoapifyContext>
     )
 }
 
 export default CurrentCity;
-
-// const CurrentCity = (props) => {
-
-//     const geolocation = useSelector(state => state.geolocation.userGeolocation);
-//     const dispatch = useDispatch();
-
-//     useEffect(() => {
-//         if (!geolocation.city)
-//             dispatch(getUserGeolocationRequest());
-//     }, [])
-
-//     return (
-//         <Div >
-//             <div className='city-div'>
-//                 {geolocation.city || 'City'}
-//             </div>
-//             <div className='region-div'>
-//                 {geolocation.region || 'Region'}
-//             </div>
-//         </Div>
-//     )
-// }

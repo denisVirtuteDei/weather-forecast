@@ -1,5 +1,5 @@
 export const GET_USER_GEOLOCATION_REQUEST = 'GET_USER_GEOLOCATION_REQUEST';
-export const SET_USER_GEOLOCATION_INFO = 'SET_USER_GEOLOCATION_INFO';
+export const SET_CURRENT_CITY_INFO = 'SET_CURRENT_CITY_INFO';
 
 export const getUserGeolocationRequest = () => ({ type: GET_USER_GEOLOCATION_REQUEST });
-export const setUserGeolocationInfo = data => ({ type: SET_USER_GEOLOCATION_INFO, payload: data });
+export const setCurrentCityInfo = data => ({ type: SET_CURRENT_CITY_INFO, payload: data });

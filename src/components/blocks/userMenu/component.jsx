@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ export const UserMenu = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

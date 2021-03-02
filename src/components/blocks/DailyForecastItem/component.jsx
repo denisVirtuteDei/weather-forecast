@@ -16,6 +16,8 @@ export default (props) => {
     const [temp, setTemp] = useState(null);
 
     useEffect(() => {
+        console.log(props);
+        console.log(props.numb);
         setWeekday(epochToShortWeekday(props.dt));
         setWeatherIcon(props.weather[0].icon);
         setWeatherDesc(props.weather[0].description);
@@ -29,7 +31,7 @@ export default (props) => {
                 <CenteredDiv>
                     <TodayDiv>
                         <div className='icon'>
-                            <WeatherIcon src={weatherIcon} alt={weatherDesc} />
+                            <WeatherIcon src={weatherIcon} alt={weatherDesc}/>
                         </div>
                         <div>{weekday}</div>
                         <div>{temp}</div>

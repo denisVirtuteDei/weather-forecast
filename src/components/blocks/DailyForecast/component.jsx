@@ -10,25 +10,29 @@ import { getCityForecast } from '../../../actions/cityForecast';
 export const DailyForecast = (props) => {
 
     const dailyForecastList = useSelector(state => state.forecast.cityForecast);
-    const geolocation = useSelector(state => state.geolocation.userGeolocation);
+    const geolocation = useSelector(state => state.geolocation);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (geolocation.city && geolocation.city !== null) {
+        if (geolocation.isInfoLoaded)
             dispatch(getCityForecast(geolocation.city));
-        }
+    }, [])
+
+    useEffect(() => {
+        if (geolocation.city.length > 0) {
+            debugger;
+            dispatch(getCityForecast(geolocation.city));}
     }, [geolocation.city])
 
-    if (!dailyForecastList.length || !geolocation.city) {
-        return <DailyForecastSuspense />
-    }
+
+    if (!dailyForecastList.length) return <DailyForecastSuspense />
 
     return (
         <>
-            {
-                dailyForecastList.map((el, index) => (
-                    <DailyForecastItem key={el.dt} index={index} {...el} />
-                ))
+            { 
+                dailyForecastList.map((el, index) => {
+                    return <DailyForecastItem key={`${el.dt} ${geolocation.city}`} numb={`${el.dt} ${geolocation.city}`} index={index} {...el} />
+                })
             }
         </>
     )

@@ -19,9 +19,8 @@ export const DailyForecast = (props) => {
     }, [])
 
     useEffect(() => {
-        if (geolocation.city.length > 0) {
-            debugger;
-            dispatch(getCityForecast(geolocation.city));}
+        if (geolocation.city.length > 0)
+            dispatch(getCityForecast(geolocation.city));
     }, [geolocation.city])
 
 
@@ -31,7 +30,7 @@ export const DailyForecast = (props) => {
         <>
             { 
                 dailyForecastList.map((el, index) => {
-                    return <DailyForecastItem key={`${el.dt} ${geolocation.city}`} numb={`${el.dt} ${geolocation.city}`} index={index} {...el} />
+                    return <DailyForecastItem key={`${el.dt} ${geolocation.city}`} index={index} {...el} />
                 })
             }
         </>

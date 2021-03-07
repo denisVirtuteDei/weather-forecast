@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { CenteredDiv, TodayDiv, WeatherIcon } from './style';
 
@@ -10,20 +10,10 @@ import {
 
 export default (props) => {
 
-    const [weekday, setWeekday] = useState(null);
-    const [weatherIcon, setWeatherIcon] = useState(null);
-    const [weatherDesc, setWeatherDesc] = useState(null);
-    const [temp, setTemp] = useState(null);
-
-    useEffect(() => {
-        console.log(props);
-        console.log(props.numb);
-        setWeekday(epochToShortWeekday(props.dt));
-        setWeatherIcon(props.weather[0].icon);
-        setWeatherDesc(props.weather[0].description);
-        setTemp(tempToAcceptableForm(props.main.temp));
-    }, [])
-
+    const weekday = epochToShortWeekday(props.dt);
+    const weatherIcon = props.weather[0].icon;
+    const weatherDesc = props.weather[0].description;
+    const temp = tempToAcceptableForm(props.main.temp);
 
     return (
         props.index === 0
@@ -31,7 +21,7 @@ export default (props) => {
                 <CenteredDiv>
                     <TodayDiv>
                         <div className='icon'>
-                            <WeatherIcon src={weatherIcon} alt={weatherDesc}/>
+                            <WeatherIcon src={weatherIcon} alt={weatherDesc} />
                         </div>
                         <div>{weekday}</div>
                         <div>{temp}</div>

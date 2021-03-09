@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { CenteredDiv, TodayDiv, WeatherIcon } from './style';
 
@@ -7,23 +7,19 @@ import {
     tempToAcceptableForm
 } from '../../../utils/dailyForecastMappers';
 
+import { CELSIUS_TEMP_UNIT } from '../../../constants';
+
+const celsiusToFahrenheit = tempValue => Math.round(tempValue * 1.8 + 32)
+
 
 export default (props) => {
 
-    const [weekday, setWeekday] = useState(null);
-    const [weatherIcon, setWeatherIcon] = useState(null);
-    const [weatherDesc, setWeatherDesc] = useState(null);
-    const [temp, setTemp] = useState(null);
-
-    useEffect(() => {
-        console.log(props);
-        console.log(props.numb);
-        setWeekday(epochToShortWeekday(props.dt));
-        setWeatherIcon(props.weather[0].icon);
-        setWeatherDesc(props.weather[0].description);
-        setTemp(tempToAcceptableForm(props.main.temp));
-    }, [])
-
+    const weekday = epochToShortWeekday(props.dayTime);
+    const weatherIcon = props.weather.icon;
+    const weatherDesc = props.weather.description;
+    const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT ?
+        tempToAcceptableForm(props.temp) :
+        tempToAcceptableForm(celsiusToFahrenheit(props.temp));
 
     return (
         props.index === 0
@@ -31,7 +27,11 @@ export default (props) => {
                 <CenteredDiv>
                     <TodayDiv>
                         <div className='icon'>
-                            <WeatherIcon src={weatherIcon} alt={weatherDesc}/>
+                            <WeatherIcon 
+                                src={weatherIcon} 
+                                alt={weatherDesc} 
+                                api={props.fsettings.forecastApi} 
+                            />
                         </div>
                         <div>{weekday}</div>
                         <div>{temp}</div>
@@ -41,7 +41,11 @@ export default (props) => {
                 <CenteredDiv>
                     <div>{weekday}</div>
                     <div>
-                        <WeatherIcon src={weatherIcon} alt={weatherDesc} />
+                        <WeatherIcon 
+                            src={weatherIcon} 
+                            alt={weatherDesc} 
+                            api={props.fsettings.forecastApi} 
+                        />
                     </div>
                     <div>{temp}</div>
                 </CenteredDiv>

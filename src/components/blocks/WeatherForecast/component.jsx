@@ -8,6 +8,7 @@ import UserMenu from '../UserMenu';
 import CurrentCity from '../CurrentCity';
 import DateTime from '../CurrentDateTime';
 import DailyForecast from '../DailyForecast';
+import SettingsFooter from '../SettingsFooter';
 import CenteredImgGrid from '../CenteredImgGrid';
 
 import { CENTERED_PAPER_IMG } from '../../../constants';
@@ -32,15 +33,23 @@ export const WeatherForecastPaper = (props) => {
                     <CurrentCity />
                 </Grid>
             </ReducedGrid>
-            <ReducedGrid
-                item
-                xs
-                container
-                alignItems='stretch'
-                justify='space-between'
-                maxheight='40%'
-            >
-                <DailyForecast />
+            <ReducedGrid item xs maxheight='40%' >
+                <Grid 
+                    item xs={12} 
+                    container
+                    alignItems='stretch'
+                    justify='space-between' 
+                >
+                    <DailyForecast />
+                </Grid>
+                <Grid 
+                    item xs={12} 
+                    container
+                    alignItems='stretch'
+                    justify='space-around' 
+                >
+                    <SettingsFooter />
+                </Grid>
             </ReducedGrid>
         </CenteredImgGrid>
     )

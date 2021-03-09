@@ -7,5 +7,5 @@ import forecast from './cityForecastReducer';
 export default combineReducers({ 
     user,
     geolocation,
-    forecast
+    forecast,
 })

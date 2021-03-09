@@ -1,6 +1,7 @@
 import {
     SET_FORECAST_API,
     SET_CITY_FORECAST,
+    SET_IS_LOADING_INFO,
     SET_TEMPERATURE_UNIT,
     GET_CITY_FORECAST_REQUEST,
 } from '../../actions/cityForecast';
@@ -12,7 +13,8 @@ const initForecastState = {
     forecastSettings: {
         tempUnit: CELSIUS_TEMP_UNIT,
         forecastApi: OPEN_WEATHER_MAP_API,
-    }
+    },
+    isLoading: false
 }
 
 export default function cityForecastReducer(state = initForecastState, action) {
@@ -37,6 +39,11 @@ export default function cityForecastReducer(state = initForecastState, action) {
             return {
                 ...state,
                 cityForecast: action.payload
+            }
+        case SET_IS_LOADING_INFO:
+            return {
+                ...state,
+                isLoading: action.payload
             }
         case GET_CITY_FORECAST_REQUEST:
             return { ...state }

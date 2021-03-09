@@ -12,6 +12,7 @@ export const DailyForecast = (props) => {
     const dispatch = useDispatch();
     const geolocation = useSelector(state => state.geolocation);
     const fsettings = useSelector(state => state.forecast.forecastSettings);
+    //const isFetchingForecast = useSelector(state => state.forecast.isLoading);
     const dailyForecastList = useSelector(state => state.forecast.cityForecast);
 
     useEffect(() => {

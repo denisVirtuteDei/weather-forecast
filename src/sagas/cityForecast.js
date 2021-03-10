@@ -5,7 +5,7 @@ import {
     setCityForecast
 } from '../actions/cityForecast';
 
-import {getForecastByCityName} from '../services/axiosRequests';
+import { getForecastByCityName } from '../services/axiosRequests';
 
 import { filteringDailyForecast } from '../utils/dailyForecastMappers';
 
@@ -18,7 +18,10 @@ export function* getCityForecastRequestWatcher() {
 }
 
 function* getCityForecastWorker({ payload }) {
-    const response = yield call(getForecastByCityName, payload);
-    const dailyForecastList = yield call(filteringDailyForecast, response.data);
-    yield put(setCityForecast(dailyForecastList));
+    try {
+        const response = yield call(getForecastByCityName, payload.cityName, payload.fapi);
+        const dailyForecastList = yield call(filteringDailyForecast, response.data, payload.fapi);
+        yield put(setCityForecast(dailyForecastList));
+    } catch (err) {}
+    
 }

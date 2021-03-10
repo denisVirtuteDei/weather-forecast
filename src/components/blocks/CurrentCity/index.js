@@ -1,3 +1,3 @@
-import { CurrentCity } from './component';
+import CurrentCity from './component';
 
 export default CurrentCity;

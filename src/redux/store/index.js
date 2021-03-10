@@ -20,7 +20,7 @@ export const makeStore = () => {
     sagaMiddleware.run(rootSaga);
 
     store.subscribe(() => {
-        saveState(store.getState());
+        saveState({ user: store.getState().user});
     })
 
     return store

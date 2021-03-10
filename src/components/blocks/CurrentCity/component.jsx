@@ -1,29 +1,44 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Div } from './style';
+import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
+import '@geoapify/geocoder-autocomplete/styles/minimal.css'
 
-import { getUserGeolocationRequest } from '../../../actions/geolocation'
+import { getUserGeolocationRequest, setCurrentCityInfo } from '../../../actions/geolocation';
 
+const CurrentCity = (props) => {
 
-export const CurrentCity = (props) => {
-
-    const geolocation = useSelector(state => state.geolocation.userGeolocation);
     const dispatch = useDispatch();
+    const geolocation = useSelector(state => state.geolocation);
+    const [inputCityInfo, setInputCityInfo] = useState(null);
 
     useEffect(() => {
-        if (!geolocation.city)
+        if(!geolocation.isInfoLoaded) {
             dispatch(getUserGeolocationRequest());
+        } else {
+            setInputCityInfo({...geolocation});
+        }
     }, [])
 
+    const onPlaceSelect = value => {
+        if (value === null) {
+            setInputCityInfo(value);
+        } else if (value.properties.formatted !== geolocation.formatted) {
+            dispatch(setCurrentCityInfo({...value.properties}));
+        }
+    }
+
+
     return (
-        <Div >
-            <div className='city-div'>
-                {geolocation.city || 'City'}
-            </div>
-            <div className='region-div'>
-                {geolocation.region || 'Region'}
-            </div>
-        </Div>
+        <GeoapifyContext apiKey="4d452340ced347708fa6f45256620b3f">
+            <GeoapifyGeocoderAutocomplete
+                placeholder="Enter address here"
+                type='city'
+                placeSelect={onPlaceSelect}
+                value={(inputCityInfo && inputCityInfo.formatted) || geolocation.formatted}
+            />
+        </GeoapifyContext>
     )
 }
+
+export default CurrentCity;

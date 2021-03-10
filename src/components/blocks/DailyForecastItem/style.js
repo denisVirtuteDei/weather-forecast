@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mappingIconUrl } from '../../../utils/dataMappers';
 
 export const CenteredDiv = styled.div`
     display: flex;
@@ -27,7 +28,7 @@ export const TodayDiv = styled.div`
 `
 
 export const WeatherIcon = styled.img.attrs((props) => ({
-    src: `http://openweathermap.org/img/wn/${props.src}@2x.png`
+    src: mappingIconUrl(props.src, props.api)
 }))`
     alt: ${props => props.alt};
 `

@@ -1,23 +1,23 @@
 import {
-    SET_FORECAST_API,
-    SET_CITY_FORECAST,
     SET_TEMPERATURE_UNIT,
-    GET_CITY_FORECAST_REQUEST,
-} from '../../actions/cityForecast';
+    SET_CITY_WEATHER_FORECAST,
+    SET_WEATHER_FORECAST_API_NAME,
+    GET_CITY_WEATHER_FORECAST_REQUEST,
+} from '../../actions/cityForecast'
 
-import { CELSIUS_TEMP_UNIT, OPEN_WEATHER_MAP_API } from '../../constants';
+import { CELSIUS_TEMP_UNIT, OPEN_WEATHER_MAP_API_NAME } from '../../constants'
 
 const initForecastState = {
     cityForecast: [],
     forecastSettings: {
         tempUnit: CELSIUS_TEMP_UNIT,
-        forecastApi: OPEN_WEATHER_MAP_API,
+        forecastApi: OPEN_WEATHER_MAP_API_NAME,
     }
 }
 
 export default function cityForecastReducer(state = initForecastState, action) {
     switch (action.type) {
-        case SET_FORECAST_API:
+        case SET_WEATHER_FORECAST_API_NAME:
             return {
                 ...state,
                 forecastSettings: {
@@ -33,13 +33,12 @@ export default function cityForecastReducer(state = initForecastState, action) {
                     tempUnit: action.payload
                 }
             }
-        case SET_CITY_FORECAST:
+        case SET_CITY_WEATHER_FORECAST:
             return {
                 ...state,
                 cityForecast: action.payload
             }
-        case GET_CITY_FORECAST_REQUEST:
-            return { ...state }
-        default: return state;
+        case GET_CITY_WEATHER_FORECAST_REQUEST: return { ...state }
+        default: return { ...state }
     }
 }

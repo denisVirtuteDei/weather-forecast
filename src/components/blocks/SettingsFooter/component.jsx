@@ -8,13 +8,13 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { setForecastApi, setTemperatureUnit } from '../../../actions/cityForecast';
+import { setWeatherForecastApiName, setTemperatureUnit } from '../../../actions/cityForecast';
 
 import {
     CELSIUS_TEMP_UNIT,
     FAHRENHEIT_TEMP_UNIT,
-    OPEN_WEATHER_MAP_API,
-    WEATHER_BIT_API,
+    OPEN_WEATHER_MAP_API_NAME,
+    WEATHER_BIT_API_NAME,
 } from '../../../constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +34,7 @@ const Footer = (props) => {
     const fsettings = useSelector(state => state.forecast.forecastSettings);
 
     const handleApiToggle = event => {
-        dispatch(setForecastApi(event.target.value));
+        dispatch(setWeatherForecastApiName(event.target.value));
     }
 
     const handleTempUnitToggle = event => {
@@ -50,8 +50,8 @@ const Footer = (props) => {
                     value={fsettings.forecastApi}
                     onChange={handleApiToggle}
                 >
-                    <MenuItem value={OPEN_WEATHER_MAP_API}>openweathermap</MenuItem>
-                    <MenuItem value={WEATHER_BIT_API}>weatherbit</MenuItem>
+                    <MenuItem value={OPEN_WEATHER_MAP_API_NAME}>openweathermap</MenuItem>
+                    <MenuItem value={WEATHER_BIT_API_NAME}>weatherbit</MenuItem>
                 </Select>
                 <FormHelperText>Choose ur fapi</FormHelperText>
             </FormControl>

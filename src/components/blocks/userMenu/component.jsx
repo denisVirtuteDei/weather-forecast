@@ -1,51 +1,43 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
-import { Button, ListItemText } from '@material-ui/core';
+import { Button, ListItemText } from '@material-ui/core'
 
-import { Div } from './style';
-import { StyledMenu, StyledMenuItem } from './style';
+import { FormWrapper } from './style'
+import { StyledMenu, StyledMenuItem } from './style'
 
-import { singOutUsingFirebase } from '../../../utils/firebase';
+import { singOutUsingFirebase, getAuthUserInfo } from '../../../utils/firebase'
 
-import { signOutUser } from '../../../actions/user';
+import { ROUTE_TO_SIGN_IN } from '../../../constants'
 
 
 export const UserMenu = (props) => {
 
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
-    const [anchorEl, setAnchorEl] = useState(null);
+    const history = useHistory()
+    const currentUser = getAuthUserInfo()
+    const [anchorEl, setAnchorEl] = useState(null)
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleMenuClick = (event) => { setAnchorEl(event.currentTarget) }
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const handleClose = () => { setAnchorEl(null) }
 
     const handleSignOutClick = () => {
-        setAnchorEl(null);
-
-        dispatch(signOutUser());
-        singOutUsingFirebase();
-
-        history.push('/signIn');
+        setAnchorEl(null)
+        singOutUsingFirebase()
+        history.push(ROUTE_TO_SIGN_IN)
     }
 
     return (
-        <Div>
+        <FormWrapper>
             <Button
                 aria-controls='customized-menu'
                 aria-haspopup='true'
                 variant='contained'
                 color='secondary'
-                onClick={handleClick}
+                onClick={handleMenuClick}
             >
-                {user.name || user.email || 'Anonymus'}
+                {currentUser.displayName || currentUser.email || 'Anonymus'}
             </Button>
             <StyledMenu
                 id='customized-menu'
@@ -58,6 +50,6 @@ export const UserMenu = (props) => {
                     <ListItemText primary='Logout' />
                 </StyledMenuItem>
             </StyledMenu>
-        </Div>
+        </FormWrapper>
     )
 }

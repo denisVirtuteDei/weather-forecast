@@ -30,7 +30,7 @@ const CurrentCity = (props) => {
 
 
     return (
-        <GeoapifyContext apiKey="4d452340ced347708fa6f45256620b3f">
+        <GeoapifyContext apiKey={process.env.REACT_APP_GEOPIFY_API_KEY}>
             <GeoapifyGeocoderAutocomplete
                 placeholder="Enter address here"
                 type='city'

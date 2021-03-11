@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DailyForecastItem from '../DailyForecastItem';
 import DailyForecastSuspense from '../DailyForecastSuspense';
 
-import { getCityForecast } from '../../../actions/cityForecast';
+import { getCityWeatherForecast } from '../../../actions/cityForecast';
 
 
 export const DailyForecast = (props) => {
@@ -16,12 +16,12 @@ export const DailyForecast = (props) => {
 
     useEffect(() => {
         if (geolocation.isInfoLoaded)
-            dispatch(getCityForecast(geolocation.city));
+            dispatch(getCityWeatherForecast(geolocation.city));
     }, [])
 
     useEffect(() => {
         if (geolocation.city.length > 0) {
-            dispatch(getCityForecast({
+            dispatch(getCityWeatherForecast({
                 cityName: geolocation.city,
                 fapi: fsettings.forecastApi
             }));

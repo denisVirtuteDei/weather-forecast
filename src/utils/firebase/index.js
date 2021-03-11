@@ -1,19 +1,19 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDxFOiLf9hoQnvLdLvsVRH1JJtVbGatMZY",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "weather-forecast-72443.firebaseapp.com",
     databaseURL: "https://weather-forecast-72443.firebaseio.com",
     projectId: "weather-forecast-72443",
     storageBucket: "weather-forecast-72443.appspot.com",
     messagingSenderId: "764447596972"
-};
+}
 
-if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
+if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig)
 
-const provider = new firebase.auth.GoogleAuthProvider();
-export default firebase;
+const provider = new firebase.auth.GoogleAuthProvider()
+export default firebase
 
 export const singInWithGoogleAccountUsingFirebase = () => {
     return firebase
@@ -23,22 +23,23 @@ export const singInWithGoogleAccountUsingFirebase = () => {
             const { user } = result
             return user
         })
-        .catch(err => { throw err });
+        .catch(error => { throw error })
 }
 
-export const signInAnonymouslyUsingFirebase = () => {
+export const singInWithEmailUsingFirebase = (email, password) => {
     return firebase
         .auth()
-        .signInAnonymously()
-        .then(function (result) {
+        .signInWithEmailAndPassword(email, password)
+        .then((result) => {
             const { user } = result
             return user
         })
+        .catch(error => { throw error })
 }
 
 export const checkUserAuth = () => {
     return new Promise((resolve, reject) => {
-        firebase.auth().onAuthStateChanged(function (user) {
+        firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 resolve(true)
             } else {
@@ -48,6 +49,6 @@ export const checkUserAuth = () => {
     })
 }
 
-export const singOutUsingFirebase = () => {
-    return firebase.auth().signOut()
-}
+export const getAuthUserInfo = () => firebase.auth().currentUser
+
+export const singOutUsingFirebase = () => firebase.auth().signOut()

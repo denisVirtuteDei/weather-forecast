@@ -1,20 +1,27 @@
-import React from 'react';
+import React from 'react'
+import moment from 'moment'
 
-import { CenteredDiv, TodayDiv, WeatherIcon } from './style';
+import { 
+    CenteredDiv, 
+    TodayDiv, 
+    WeatherIcon 
+} from './style'
 
 import {
-    epochToShortWeekday,
-    tempToAcceptableForm
-} from '../../../utils/dailyForecastMappers';
+    tempToAcceptableForm,
+    celsiusToFahrenheit
+} from '../../../utils/weatherDataMappers'
 
-import { CELSIUS_TEMP_UNIT } from '../../../constants';
+import { 
+    CELSIUS_TEMP_UNIT, 
+    MILLISECONDS_IN_SECONDS 
+} from '../../../constants'
 
-const celsiusToFahrenheit = tempValue => Math.round(tempValue * 1.8 + 32)
 
 
 export default (props) => {
 
-    const weekday = epochToShortWeekday(props.dayTime);
+    const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd');
     const weatherIcon = props.weather.icon;
     const weatherDesc = props.weather.description;
     const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT ?

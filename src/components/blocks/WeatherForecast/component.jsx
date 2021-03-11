@@ -34,19 +34,19 @@ export const WeatherForecastPaper = (props) => {
                 </Grid>
             </ReducedGrid>
             <ReducedGrid item xs maxheight='40%' >
-                <Grid 
-                    item xs={12} 
+                <Grid
+                    item xs={12}
                     container
                     alignItems='stretch'
-                    justify='space-between' 
+                    justify='space-between'
                 >
                     <DailyForecast />
                 </Grid>
-                <Grid 
-                    item xs={12} 
+                <Grid
+                    item xs={12}
                     container
                     alignItems='stretch'
-                    justify='space-around' 
+                    justify='space-around'
                 >
                     <SettingsFooter />
                 </Grid>

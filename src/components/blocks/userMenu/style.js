@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Menu, MenuItem, withStyles } from '@material-ui/core';
 
-export const Div = styled.div`
+export const FormWrapper = styled.div`
     margin-top: 10;
     margin-right: 10;
 `

@@ -1,71 +1,82 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory, useLocation } from 'react-router-dom'
 
-import { Grid } from '@material-ui/core';
+import { CircularProgress, Grid, makeStyles } from '@material-ui/core'
 
-import { Div } from '../CurrentDateTime/style';
-import CenteredImgGrid from '../CenteredImgGrid';
+import { Div } from '../CurrentDateTime/style'
+import CenteredImgGrid from '../CenteredImgGrid'
 
-import { CENTERED_PAPER_IMG } from '../../../constants';
-import { signInAnonUser, signInUserViaGoogle } from '../../../actions/user'
+import { CENTERED_PAPER_IMG } from '../../../constants'
+import { signInUserWithEmail, signInUserWithGoogle } from '../../../actions/user'
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        justify: 'center',
+        textAlign: 'center',
+        alignItems: 'center',
+        direction: 'column',
+        // Match [0, md + 1)
+        //       [0, lg)
+        //       [0, 1280px)
+        [theme.breakpoints.down('sm')]: {
+            width: 600,
+        },
+
+    },
+}))
 
 
 export const SingInPaper = (props) => {
 
-    const history = useHistory();
-    const location = useLocation();
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
-    const { from } = location.state || { from: { pathname: "/" } };
+    const classes = useStyles()
+    const history = useHistory()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const [isLoading, setIsLoading] = useState(false); 
+    const { from } = location.state || { from: { pathname: "/" } }
 
-    const anonSignIn = () => {
-        dispatch(signInAnonUser());
-        history.replace(from);
+    const handleSignInAnonymously = () => {
+        //dispatch(signInUserWithEmail(emain,password))
+        //history.push(from)
+        //history.replace(from)
     }
 
-    const googleSignIn = () => {
-        dispatch(signInUserViaGoogle());
-        history.replace(from);
+    const handleSignInWithGoogleAccount = () => {
+        dispatch(signInUserWithGoogle())
+        history.push(from)
+        //history.replace(from)
     }
-
-    useEffect(() => {
-        if (user.isLogged) history.push(from);
-    }, [user.isLogged])
-
-    if (user.isLogged) return null
 
     return (
         <CenteredImgGrid
-            className='border-box'
             container
             spacing={4}
-            direction='column'
-            justify='center'
-            alignItems='center'
+            className={classes.root}
             img={CENTERED_PAPER_IMG}
         >
-            <Div>
-                <Grid className='grid-item-margin' item xs>
-                    <h2>Sign in</h2>
-                </Grid>
-                <Grid className='grid-item-margin' item xs>
-                    <button
-                        data-testid="signin-anon"
-                        onClick={anonSignIn}
-                    >
-                        Sign In Anonymously
-                    </button>
-                </Grid>
-                <Grid className='grid-item-margin' item xs>
-                    <button
-                        data-testid="signin-via-google"
-                        onClick={googleSignIn}
-                    >
-                        Sign In Via Google Account
-                    </button>
-                </Grid>
-            </Div>
+            <Grid className='grid-item-margin' item xs>
+                <h2>authorization</h2>
+            </Grid>
+            <Grid className='grid-item-margin' item xs>
+                <button
+                    data-testid="signin-anon"
+                    //disabled={isLoading}
+                    //onClick={handleSignInAnonymously}
+                >
+                    Sign In
+                </button>
+            </Grid>
+            <Grid className='grid-item-margin' item xs>
+                <button
+                    data-testid="signin-via-google"
+                    disabled={isLoading}
+                    onClick={handleSignInWithGoogleAccount}
+                >
+                    Sign In Via Google Account
+                </button>
+            </Grid>
         </CenteredImgGrid>
     )
 }

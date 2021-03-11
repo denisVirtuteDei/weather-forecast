@@ -5,12 +5,12 @@ import {
     Route,
 } from "react-router-dom";
 
-import PrivateRoute from './PrivateRoute';
-import ImgContainer from '../blocks/MainBox';
-import SingInPaper from "../blocks/SignInPaper";
-import WeatherForecastPaper from "../blocks/WeatherForecast";
+import PrivateRoute from './components/wrappers/PrivateRoute';
+import ImgContainer from './components/blocks/MainBox';
+import SingInPaper from "./components/blocks/SignInPaper";
+import WeatherForecastPaper from "./components/blocks/WeatherForecast";
 
-import { ROUTE_TO_FORECAST, ROUTE_TO_SIGN_IN } from '../../constants';
+import { ROUTE_TO_FORECAST, ROUTE_TO_SIGN_IN } from './constants';
 
 const Router = () => (
     <BrowserRouter>

@@ -1,27 +1,29 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects'
 
 import {
-    GET_CITY_FORECAST_REQUEST,
-    setCityForecast
-} from '../actions/cityForecast';
+    GET_CITY_WEATHER_FORECAST_REQUEST,
+    setCityWeatherForecast
+} from '../actions/cityForecast'
 
-import { getForecastByCityName } from '../services/axiosRequests';
+import { mapWeatherForecastData } from '../utils/weatherDataMappers'
 
-import { filteringDailyForecast } from '../utils/dailyForecastMappers';
+import { getWeatherForecastByCityName } from '../services/axiosRequests'
 
 
-export function* getCityForecastRequestWatcher() {
+export function* getCityWeatherForecastRequestWatcher() {
     yield takeEvery(
-        GET_CITY_FORECAST_REQUEST,
-        getCityForecastWorker
+        GET_CITY_WEATHER_FORECAST_REQUEST,
+        getCityWeatherForecastWorker
     );
 }
 
-function* getCityForecastWorker({ payload }) {
+function* getCityWeatherForecastWorker({ payload }) {
     try {
-        const response = yield call(getForecastByCityName, payload.cityName, payload.fapi);
-        const dailyForecastList = yield call(filteringDailyForecast, response.data, payload.fapi);
-        yield put(setCityForecast(dailyForecastList));
-    } catch (err) {}
+        const response = yield call(getWeatherForecastByCityName, payload.cityName, payload.fapi)
+        const dailyWeatherDataList = yield call(mapWeatherForecastData, response.data, payload.fapi)
+        yield put(setCityWeatherForecast(dailyWeatherDataList))
+    } catch (error) {
+
+    }
     
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Router from './components/wrappers/Router';
+import Router from './Router';
 
 import { makeStore } from './redux/store';
 

@@ -1,28 +1,27 @@
 import React from 'react'
 import moment from 'moment'
 
-import { 
-    CenteredDiv, 
-    TodayDiv, 
-    WeatherIcon 
+import {
+    CenteredDiv,
+    TodayDiv,
+    WeatherIcon
 } from './style'
 
 import {
     tempToAcceptableForm,
     celsiusToFahrenheit
-} from '../../../utils/weatherDataMappers'
+} from '@utils/weatherDataMappers'
 
-import { 
-    CELSIUS_TEMP_UNIT, 
-    MILLISECONDS_IN_SECONDS 
-} from '../../../constants'
-
+import {
+    CELSIUS_TEMP_UNIT,
+    MILLISECONDS_IN_SECONDS,
+} from '@constants'
 
 
 export default (props) => {
 
     const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd');
-    const weatherIcon = props.weather.icon;
+    const weatherIconCode = props.weather.icon || 'unknown';
     const weatherDesc = props.weather.description;
     const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT ?
         tempToAcceptableForm(props.temp) :
@@ -34,24 +33,22 @@ export default (props) => {
                 <CenteredDiv>
                     <TodayDiv>
                         <div className='icon'>
-                            <WeatherIcon 
-                                src={weatherIcon} 
-                                alt={weatherDesc} 
-                                api={props.fsettings.forecastApi} 
+                            <WeatherIcon
+                                src={`icons/${weatherIconCode}.png`}
+                                alt={weatherDesc}
                             />
                         </div>
-                        <div>{weekday}</div>
-                        <div>{temp}</div>
+                        <div className='weekday'>{weekday}</div>
+                        <div className='temperature'>{temp}</div>
                     </TodayDiv>
                 </CenteredDiv>
             ) : (
                 <CenteredDiv>
                     <div>{weekday}</div>
                     <div>
-                        <WeatherIcon 
-                            src={weatherIcon} 
-                            alt={weatherDesc} 
-                            api={props.fsettings.forecastApi} 
+                        <WeatherIcon
+                            src={`icons/${weatherIconCode}.png`}
+                            alt={weatherDesc}
                         />
                     </div>
                     <div>{temp}</div>

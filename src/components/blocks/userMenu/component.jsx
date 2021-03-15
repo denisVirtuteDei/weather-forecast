@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { Button, ListItemText } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
-import { FormWrapper } from './style'
-import { StyledMenu, StyledMenuItem } from './style'
+import { FormWrapper, CustomMenuItem, CustomMenu } from './style'
 
-import { singOutUsingFirebase, getAuthUserInfo } from '../../../utils/firebase'
+import {
+    singOutUsingFirebase,
+    getAuthUserInfo
+} from '../../../utils/firebase'
 
 import { ROUTE_TO_SIGN_IN } from '../../../constants'
 import { signOutUserRequest } from '../../../actions/user'
@@ -20,9 +22,13 @@ export const UserMenu = (props) => {
     const currentUser = getAuthUserInfo()
     const [anchorEl, setAnchorEl] = useState(null)
 
-    const handleMenuClick = (event) => { setAnchorEl(event.currentTarget) }
+    const handleMenuClick = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
 
-    const handleClose = () => { setAnchorEl(null) }
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
 
     const handleSignOutClick = () => {
         setAnchorEl(null)
@@ -42,17 +48,24 @@ export const UserMenu = (props) => {
             >
                 {currentUser.displayName || currentUser.email || 'Anonymus'}
             </Button>
-            <StyledMenu
-                id='customized-menu'
+            <CustomMenu
+                elevation={0}
+                id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
             >
-                <StyledMenuItem onClick={handleSignOutClick}>
-                    <ListItemText primary='Logout' />
-                </StyledMenuItem>
-            </StyledMenu>
-        </FormWrapper>
+                <CustomMenuItem onClick={handleSignOutClick}>Logout</CustomMenuItem>
+            </CustomMenu>
+        </FormWrapper >
     )
 }

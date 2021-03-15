@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -24,18 +23,16 @@ export const TemperatureUnitToggle = (props) => {
     }
 
     return (
-        <Grid item xs>
-            <FormControl>
-                <Select
-                    labelId="select-degree-label"
-                    id="select-degree"
-                    value={fsettings.tempUnit}
-                    onChange={handleTempUnitToggle}
-                >
-                    <MenuItem value={CELSIUS_TEMP_UNIT}>C</MenuItem>
-                    <MenuItem value={FAHRENHEIT_TEMP_UNIT}>F</MenuItem>
-                </Select>
-            </FormControl>
-        </Grid>
+        <FormControl>
+            <Select
+                labelId="select-degree-label"
+                id="select-degree"
+                value={fsettings.tempUnit}
+                onChange={handleTempUnitToggle}
+            >
+                <MenuItem value={CELSIUS_TEMP_UNIT}>C</MenuItem>
+                <MenuItem value={FAHRENHEIT_TEMP_UNIT}>F</MenuItem>
+            </Select>
+        </FormControl>
     );
 }

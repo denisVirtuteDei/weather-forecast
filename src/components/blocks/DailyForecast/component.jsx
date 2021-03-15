@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Grid } from '@material-ui/core';
+import { Carousel } from './style'
 
 import DailyForecastItem from '../DailyForecastItem';
 import DailyForecastSuspense from '../DailyForecastSuspense';
-
 import { getCityWeatherForecast } from '../../../actions/cityForecast';
 
 
@@ -34,7 +33,7 @@ export const DailyForecast = (props) => {
     if (!dailyForecastList.length) return <DailyForecastSuspense />
 
     return (
-        <>
+        <Carousel options={{freeScroll: true, contain: true, prevNextButtons: false}}>
             {
                 dailyForecastList.map((el, index) => {
                     return (
@@ -47,10 +46,6 @@ export const DailyForecast = (props) => {
                     )
                 })
             }
-        </>
+        </Carousel>
     )
 }
-
-{/* <Grid item md={2} xl={3} xs={4} >
-                            
-                        </Grid> */}

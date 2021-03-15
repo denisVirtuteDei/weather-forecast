@@ -21,4 +21,12 @@ export const ReducedGrid = styled(Grid)`
             width: 100%;
         }
     }
+
+    .datetime-container {
+        margin-left: 10px; 
+    }
+
+    .current-city-container {
+        padding-top: 10px;
+    }
 `

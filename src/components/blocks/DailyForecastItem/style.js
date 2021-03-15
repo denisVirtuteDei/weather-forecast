@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { mappingIconUrl } from '../../../utils/dataMappers';
 
 export const CenteredDiv = styled.div`
+    margin: 10px 0; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,25 +12,24 @@ export const CenteredDiv = styled.div`
 `
 
 export const TodayDiv = styled.div`
+    margin-right: 10px; 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr auto;
     grid-gap: 5px;
-    grid-auto-rows: (50px, auto);
     align-items: center;
-    justify-content: center;
-    
+    font-size: 2rem;
+   
     .icon {
         grid-column-start: span 1;
         grid-row-start: span 2;
-        align-self: center;
-        justify-self: end;
+        justify-self: flex-end;
     }
 `
 
-export const WeatherIcon = styled.img.attrs((props) => ({
-    src: mappingIconUrl(props.src, props.api)
+export const WeatherIcon = styled.img.attrs(props => ({ 
+    src: props.src 
 }))`
-    width: 80%;
-    height: 80%;
+    width: 100px;
+    height: 100px;
     alt: ${props => props.alt};
 `

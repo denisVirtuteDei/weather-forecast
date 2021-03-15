@@ -1,24 +1,24 @@
 import React from 'react'
 
 import Grid from '@material-ui/core/Grid'
+import Divider from '@material-ui/core/Divider'
 
 import { ReducedGrid } from './style'
 
-import UserMenu from '../UserMenu'
-import CurrentCity from '../CurrentCity'
-import DateTime from '../CurrentDateTime'
-import CenteredImgDiv from '../CenteredImgDiv'
-import SettingsBlockWrapper from '../../wrappers/SettingsBlockWrapper'
-import { Divider } from '@material-ui/core'
-import { WeatherForecastCarousel } from '../WeatherForecastCarousel/component'
-
+import UserMenu from '@blocks/UserMenu'
+import CurrentCity from '@blocks/CurrentCity'
+import DateTime from '@blocks/CurrentDateTime'
+import DailyForecast from '@blocks/DailyForecast'
+import CenteredImgDiv from '@blocks/CenteredImgDiv'
+import WeatherApiToggle from '@blocks/WeatherApiToggle'
+import TemperatureUnitToggle from '@blocks/TemperatureUnitToggle'
 
 
 export const WeatherForecastPaper = (props) => {
 
     return (
         <CenteredImgDiv>
-            <Grid className='weather-forecast-container' container xs direction='column'>
+            <Grid className='weather-forecast-container' container direction='column'>
                 <ReducedGrid item xs>
                     <Grid item xs container justify='flex-end' >
                         <UserMenu />
@@ -26,16 +26,15 @@ export const WeatherForecastPaper = (props) => {
                     <Grid className='geo-info-container' item xs container >
                         <Grid
                             className='datetime-container'
-                            item xs={6}
+                            item sm
                             container
-                            justify='center'
                             alignItems='baseline'
                         >
                             <DateTime />
                         </Grid>
                         <Grid
                             className='current-city-container'
-                            item xs={6}
+                            item sm
                             container
                             justify='flex-end'
                             alignItems='baseline'
@@ -45,10 +44,15 @@ export const WeatherForecastPaper = (props) => {
                     </Grid>
                 </ReducedGrid>
                 <ReducedGrid item xs container >
-                    <Grid className='daily-forecast-container' item md={12}>
-                        <WeatherForecastCarousel />
+                    <Grid className='daily-forecast-container' item xs={12}>
+                        <DailyForecast />
                     </Grid>
-                    <Grid className='settings-block-divider' item xs={12}>
+                    <Grid
+                        className='settings-block-divider'
+                        item xs={12}
+                        container
+                        alignItems='center'
+                    >
                         <Divider />
                     </Grid>
                     <Grid
@@ -56,9 +60,10 @@ export const WeatherForecastPaper = (props) => {
                         item xs={12}
                         container
                         alignItems='baseline'
-                        justify='space-around'
+                        justify='space-evenly'
                     >
-                        <SettingsBlockWrapper />
+                        <WeatherApiToggle />
+                        <TemperatureUnitToggle />
                     </Grid>
                 </ReducedGrid>
             </Grid>

@@ -19,10 +19,7 @@ export const singInWithGoogleAccountUsingFirebase = () => {
     return firebase
         .auth()
         .signInWithPopup(provider)
-        .then(function (result) {
-            const { user } = result
-            return user
-        })
+        .then(userCredential => userCredential.user)
         .catch(error => { throw error })
 }
 
@@ -30,10 +27,15 @@ export const singInWithEmailUsingFirebase = (email, password) => {
     return firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then((result) => {
-            const { user } = result
-            return user
-        })
+        .then(userCredential => userCredential.user)
+        .catch(error => { throw error })
+}
+
+export const createUserWithEmailUsingFirebase = (email, password) => {
+    return firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(userCredential => userCredential.user)
         .catch(error => { throw error })
 }
 

@@ -1,82 +1,124 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 
-import { CircularProgress, Grid, makeStyles } from '@material-ui/core'
+import {
+    Button,
+    Checkbox,
+    Divider,
+    FormControlLabel,
+    TextField,
+} from '@material-ui/core'
 
-import { Div } from '../CurrentDateTime/style'
-import CenteredImgGrid from '../CenteredImgGrid'
+import CenteredImgDiv from '../CenteredImgDiv'
 
-import { CENTERED_PAPER_IMG } from '../../../constants'
-import { signInUserWithEmail, signInUserWithGoogle } from '../../../actions/user'
+import { DivWrapper, GoogleSignInButton } from './style'
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        justify: 'center',
-        textAlign: 'center',
-        alignItems: 'center',
-        direction: 'column',
-        // Match [0, md + 1)
-        //       [0, lg)
-        //       [0, 1280px)
-        [theme.breakpoints.down('sm')]: {
-            width: 600,
-        },
-
-    },
-}))
+import {
+    setUserAuthError,
+    signInUserWithEmail,
+    signInUserWithGoogle
+} from '../../../actions/user'
 
 
 export const SingInPaper = (props) => {
 
-    const classes = useStyles()
     const history = useHistory()
     const location = useLocation()
     const dispatch = useDispatch()
-    const [isLoading, setIsLoading] = useState(false); 
-    const { from } = location.state || { from: { pathname: "/" } }
+    const currentUser = useSelector(state => state.user)
+    const { from } = location.state || { from: { pathname: '/' } }
 
-    const handleSignInAnonymously = () => {
-        //dispatch(signInUserWithEmail(emain,password))
-        //history.push(from)
-        //history.replace(from)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        if (currentUser.isLogged) history.push(from)
+    }, [currentUser.isLogged])
+
+    useEffect(() => {
+        if (currentUser.isError) {
+            switch (currentUser.errorInfo.code) {
+                case 'auth/invalid-email':
+                    console.log(currentUser.errorInfo.message, 'Неверный email или пароль')
+                    break;
+                case 'auth/wrong-password':
+                    console.log(currentUser.errorInfo.message, 'Неверный email или пароль')
+                    break;
+                case 'auth/user-not-found':
+                    console.log(currentUser.errorInfo.message, 'Неверный email или пароль')
+                    break;
+                default: break;
+            }
+        }
+
+        return (() => { dispatch(setUserAuthError({ flag: false, error: '' })) })
+    }, [currentUser.isError])
+
+
+    const handleOnSubmitFormSignIn = e => {
+        e.preventDefault()
+        dispatch(signInUserWithEmail({ email, password }))
     }
 
     const handleSignInWithGoogleAccount = () => {
         dispatch(signInUserWithGoogle())
-        history.push(from)
-        //history.replace(from)
     }
 
+    if (currentUser.isLogged) return null
+
     return (
-        <CenteredImgGrid
-            container
-            spacing={4}
-            className={classes.root}
-            img={CENTERED_PAPER_IMG}
-        >
-            <Grid className='grid-item-margin' item xs>
-                <h2>authorization</h2>
-            </Grid>
-            <Grid className='grid-item-margin' item xs>
-                <button
-                    data-testid="signin-anon"
-                    //disabled={isLoading}
-                    //onClick={handleSignInAnonymously}
-                >
-                    Sign In
-                </button>
-            </Grid>
-            <Grid className='grid-item-margin' item xs>
-                <button
-                    data-testid="signin-via-google"
-                    disabled={isLoading}
+        <CenteredImgDiv>
+            <DivWrapper>
+                <h1>Welcome</h1>
+                <form className='form' onSubmit={handleOnSubmitFormSignIn}>
+                    <TextField
+                        margin='normal'
+                        variant='outlined'
+                        required
+                        fullWidth
+                        id='email'
+                        name='email'
+                        label='Email Address'
+                        autoComplete='email'
+                        autoFocus
+                        onChange={({ target }) => { setEmail(target.value) }}
+                    />
+                    <TextField
+                        margin='normal'
+                        variant='outlined'
+                        required
+                        fullWidth
+                        id='password'
+                        name='password'
+                        type='password'
+                        label='Password'
+                        autoComplete='current-password'
+                        onChange={({ target }) => { setPassword(target.value) }}
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value='remember' color='primary' />}
+                        label='Remember me'
+                    />
+                    <Button
+                        type='submit'
+                        fullWidth
+                        variant='contained'
+                        color='primary'
+                    >
+                        Log in
+                    </Button>
+                </form>
+                <Divider className='sign-in-divider' variant='middle' />
+                <GoogleSignInButton
+                    className='google-sign-in'
+                    variant='contained'
+                    color='secondary'
                     onClick={handleSignInWithGoogleAccount}
                 >
-                    Sign In Via Google Account
-                </button>
-            </Grid>
-        </CenteredImgGrid>
+                    Google sign-in
+                </GoogleSignInButton>
+            </DivWrapper>
+        </CenteredImgDiv>
     )
 }

@@ -9,34 +9,34 @@ import {
 const initUserState = {
     name: '',
     email: '',
-    errInfo: '',
+    errorInfo: '',
     isError: false,
     isLogged: false,
 }
 
 export default function userReducer(state = initUserState, action) {
     switch (action.type) {
+        case SET_USER_AUTH_ERROR:
+            return {
+                ...state,
+                isError: action.payload.flag,
+                errorInfo: action.payload.error,
+            }
         case SET_USER_AUTH_INFO:
             return {
                 ...state,
-                errInfo: '',
+                errorInfo: '',
                 isError: false,
                 isLogged: true,
                 name: action.payload.displayName,
                 email: action.payload.email
-            }
-        case SET_USER_AUTH_ERROR:
-            return {
-                ...state,
-                isError: true,
-                errInfo: action.payload,
             }
         case SING_OUT_USER_REQUEST:
             return {
                 ...state,
                 name: '',
                 email: '',
-                errInfo: '',
+                errorInfo: '',
                 isError: false,
                 isLogged: false,
             }

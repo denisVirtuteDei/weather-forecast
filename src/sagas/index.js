@@ -10,9 +10,9 @@ import { getCityWeatherForecastRequestWatcher } from './cityForecast'
 
 export default function* rootSaga() {
     yield all([
+        getUserGeolocationWatcher(),
         signInUserWithEmailRequestWatcher(),
         signInUserWithGoogleRequestWatcher(),
-        getUserGeolocationWatcher(),
         getCityWeatherForecastRequestWatcher(),
     ])
 }

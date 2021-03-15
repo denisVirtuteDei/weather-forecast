@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 
-import { Div } from './style'
+import { DatetimeDivWrapper } from './style'
 
 
 export const DateTime = (props) => {
@@ -14,9 +14,9 @@ export const DateTime = (props) => {
     }, [])
 
     return (
-        <Div>
+        <DatetimeDivWrapper>
             <div className='time-div'>{date.format('HH:mm')}</div>
             <div className='date-div'>{date.format('ddd, DD MMMM YYYY')}</div>
-        </Div>
+        </DatetimeDivWrapper>
     )
 }

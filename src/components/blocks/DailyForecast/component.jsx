@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Grid } from '@material-ui/core';
+
 import DailyForecastItem from '../DailyForecastItem';
 import DailyForecastSuspense from '../DailyForecastSuspense';
 
@@ -35,14 +37,20 @@ export const DailyForecast = (props) => {
         <>
             {
                 dailyForecastList.map((el, index) => {
-                    return <DailyForecastItem
-                        key={`${el.dayTime} ${geolocation.city}`}
-                        fsettings={fsettings}
-                        index={index}
-                        {...el}
-                    />
+                    return (
+                        <DailyForecastItem
+                            key={`${el.dayTime} ${geolocation.city}`}
+                            fsettings={fsettings}
+                            index={index}
+                            {...el}
+                        />
+                    )
                 })
             }
         </>
     )
 }
+
+{/* <Grid item md={2} xl={3} xs={4} >
+                            
+                        </Grid> */}

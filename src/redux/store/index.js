@@ -5,12 +5,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import rootSaga from '../../sagas'
 import rootReducer from '../reducers'
 
-import { loadState, saveState } from '../../utils/localstorage'
+import { 
+    loadStateFromSessionStorage, 
+    saveStateToSessionStorage 
+} from '../../utils/sessionstorage'
 
 
 export const makeStore = () => {
     const sagaMiddleware = createSagaMiddleware()
-    const persistedState = loadState()
+    const persistedState = loadStateFromSessionStorage()
     const store = createStore(
         rootReducer,
         persistedState,
@@ -20,7 +23,7 @@ export const makeStore = () => {
     sagaMiddleware.run(rootSaga)
 
     store.subscribe(() => {
-        saveState({ user: store.getState().user})
+        saveStateToSessionStorage({ user: store.getState().user})
     })
 
     return store

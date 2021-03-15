@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
-import '@geoapify/geocoder-autocomplete/styles/minimal.css'
+import '@geoapify/geocoder-autocomplete/styles/round-borders.css'
 
 import { getUserGeolocationRequest, setCurrentCityInfo } from '../../../actions/geolocation';
 

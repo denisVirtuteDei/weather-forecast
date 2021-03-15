@@ -30,5 +30,7 @@ export const TodayDiv = styled.div`
 export const WeatherIcon = styled.img.attrs((props) => ({
     src: mappingIconUrl(props.src, props.api)
 }))`
+    width: 80%;
+    height: 80%;
     alt: ${props => props.alt};
 `

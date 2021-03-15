@@ -1,6 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
 import {
+    singInWithEmailUsingFirebase,
     singInWithGoogleAccountUsingFirebase
 } from '../utils/firebase'
 
@@ -22,10 +23,9 @@ function* signInUserWithGoogleWorker() {
     try {
         const userData = yield call(singInWithGoogleAccountUsingFirebase)
         yield put(setUserAuthInfo(userData))
-    } catch (error) { 
-        yield put(setUserAuthError(error))
+    } catch (error) {
+        yield put(setUserAuthError({ flag: true, error}))
     }
-
 }
 
 export function* signInUserWithEmailRequestWatcher() {
@@ -35,14 +35,17 @@ export function* signInUserWithEmailRequestWatcher() {
     );
 }
 
-function* signInUserWithEmailWorker() {
+function* signInUserWithEmailWorker({ payload }) {
     try {
-        const userData = yield call(singInWithGoogleAccountUsingFirebase)
+        const userData = yield call(
+            singInWithEmailUsingFirebase,
+            payload.email,
+            payload.password
+        )
         yield put(setUserAuthInfo(userData))
-    } catch (error) { 
-        yield put(setUserAuthError(error.message))
+    } catch (error) {
+        yield put(setUserAuthError({ flag: true, error}))
     }
-
 }
 
 

@@ -11,7 +11,7 @@ import {
     getAuthUserInfo
 } from '@utils/firebase'
 
-import { ROUTE_TO_SIGN_IN } from '@constants'
+import { ROUTE_TO_SIGN_IN } from '@/constants'
 import { signOutUserRequest } from '@actions/user'
 
 

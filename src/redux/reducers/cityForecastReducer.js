@@ -5,7 +5,7 @@ import {
     GET_CITY_WEATHER_FORECAST_REQUEST,
 } from '@actions/cityForecast'
 
-import { CELSIUS_TEMP_UNIT, OPEN_WEATHER_MAP_API_NAME } from '@constants'
+import { CELSIUS_TEMP_UNIT, OPEN_WEATHER_MAP_API_NAME } from '@/constants'
 
 const initForecastState = {
     cityForecast: [],

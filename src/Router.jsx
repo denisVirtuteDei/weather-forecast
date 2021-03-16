@@ -10,7 +10,7 @@ import ImgContainer from '@blocks/MainBox';
 import SingInPaper from "@blocks/SignInPaper";
 import WeatherForecastPaper from "@blocks/WeatherForecast";
 
-import { ROUTE_TO_FORECAST, ROUTE_TO_SIGN_IN } from '@constants';
+import { ROUTE_TO_FORECAST, ROUTE_TO_SIGN_IN } from '@/constants';
 
 const Router = () => (
     <BrowserRouter>

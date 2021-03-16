@@ -15,7 +15,7 @@ import {
 import {
     CELSIUS_TEMP_UNIT,
     MILLISECONDS_IN_SECONDS,
-} from '@constants'
+} from '@/constants'
 
 
 export default (props) => {

@@ -10,7 +10,7 @@ import { setTemperatureUnit } from '@actions/cityForecast';
 import {
     CELSIUS_TEMP_UNIT,
     FAHRENHEIT_TEMP_UNIT,
-} from '@constants';
+} from '@/constants';
 
 
 export const TemperatureUnitToggle = (props) => {

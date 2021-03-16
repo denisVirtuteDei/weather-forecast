@@ -11,7 +11,7 @@ import { setWeatherForecastApiName } from '@actions/cityForecast'
 import { 
     OPEN_WEATHER_MAP_API_NAME, 
     WEATHER_BIT_API_NAME 
-} from '@constants'
+} from '@/constants'
 
 export const WeatherApiToggle = (props) => {
 

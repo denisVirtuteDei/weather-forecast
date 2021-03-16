@@ -1,9 +1,9 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components'
 
-import { lightMainTheme } from '@themes'
+import { lightMainTheme } from '@/themes'
 
-import GlobalStyles from '@globalStyles';
+import GlobalStyles from '@/globalStyles'
 
 
 export default (props) => (

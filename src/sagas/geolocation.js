@@ -5,7 +5,7 @@ import {
     setCurrentCityInfo,
 } from '@actions/geolocation'
 
-import { getGeolocation, getPublicIp } from '@axiosServices'
+import { getGeolocation, getPublicIp } from '@services/axiosRequests'
 
 
 export function* getUserGeolocationWatcher() {

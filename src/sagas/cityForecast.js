@@ -7,7 +7,7 @@ import {
 
 import { mapWeatherForecastData } from '@utils/weatherDataMappers'
 
-import { getWeatherForecastByCityName } from '@axiosServices'
+import { getWeatherForecastByCityName } from '@services/axiosRequests'
 
 
 export function* getCityWeatherForecastRequestWatcher() {

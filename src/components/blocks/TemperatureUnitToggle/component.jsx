@@ -5,12 +5,12 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 
-import { setTemperatureUnit } from '../../../actions/cityForecast';
+import { setTemperatureUnit } from '@actions/cityForecast';
 
 import {
     CELSIUS_TEMP_UNIT,
     FAHRENHEIT_TEMP_UNIT,
-} from '../../../constants';
+} from '@constants';
 
 
 export const TemperatureUnitToggle = (props) => {

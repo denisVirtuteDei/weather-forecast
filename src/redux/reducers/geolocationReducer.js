@@ -1,7 +1,7 @@
 import {
     GET_USER_GEOLOCATION_REQUEST,
     SET_CURRENT_CITY_INFO,
-} from '../../actions/geolocation';
+} from '@actions/geolocation';
 
 const initGeoState = {
     city: '',
@@ -10,14 +10,14 @@ const initGeoState = {
     isInfoLoaded: false
 }
 
-export default function geolocationReducer(state = initGeoState, action) {
+export default (state = initGeoState, action) => {
     switch (action.type) {
         case SET_CURRENT_CITY_INFO:
             return {
                 ...state,
                 city: action.payload.city,
-                formatted: action.payload.formatted || action.payload.city,
-                region: action.payload.region || '',
+                formatted: action.payload.formatted,
+                region: action.payload.region,
                 isInfoLoaded: true
             }
         case GET_USER_GEOLOCATION_REQUEST:

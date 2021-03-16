@@ -6,12 +6,12 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import FormHelperText from '@material-ui/core/FormHelperText'
 
-import { setWeatherForecastApiName } from '../../../actions/cityForecast'
+import { setWeatherForecastApiName } from '@actions/cityForecast'
 
 import { 
     OPEN_WEATHER_MAP_API_NAME, 
     WEATHER_BIT_API_NAME 
-} from '../../../constants'
+} from '@constants'
 
 export const WeatherApiToggle = (props) => {
 

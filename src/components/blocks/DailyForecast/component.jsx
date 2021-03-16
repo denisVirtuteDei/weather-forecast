@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Carousel } from './style'
 
-import DailyForecastItem from '../DailyForecastItem';
-import DailyForecastSuspense from '../DailyForecastSuspense';
-import { getCityWeatherForecast } from '../../../actions/cityForecast';
+import DailyForecastItem from '@blocks/DailyForecastItem';
+import DailyForecastSuspense from '@blocks/DailyForecastSuspense';
+import { getCityWeatherForecast } from '@actions/cityForecast';
 
 
 export const DailyForecast = (props) => {

@@ -1,4 +1,4 @@
-import { OPEN_WEATHER_MAP_API_NAME, WEATHER_BIT_API_NAME } from "../constants"
+import { OPEN_WEATHER_MAP_API_NAME, WEATHER_BIT_API_NAME } from "@constants"
 
 export const mapWeatherForecastData = (weatherForecastData, fapi) => {
     switch (fapi) {

@@ -4,7 +4,7 @@ import {
     SING_OUT_USER_REQUEST,
     SING_IN_USER_WITH_EMAIL_REQUEST,
     SING_IN_USER_WITH_GOOGLE_REQUEST,
-} from '../../actions/user'
+} from '@actions/user'
 
 const initUserState = {
     name: '',

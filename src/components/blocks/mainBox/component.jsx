@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ImgContainer } from './style'
 
-import { MAIN_CONTAINER_IMG } from '../../../constants'
+import { MAIN_CONTAINER_IMG } from '@constants'
 import { Container } from '@material-ui/core'
 
 export default (props) => (

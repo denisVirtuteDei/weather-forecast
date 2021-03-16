@@ -10,7 +10,7 @@ import {
     TextField,
 } from '@material-ui/core'
 
-import CenteredImgDiv from '../CenteredImgDiv'
+import CenteredImgDiv from '@blocks/CenteredImgDiv'
 
 import { DivWrapper, GoogleSignInButton } from './style'
 
@@ -18,7 +18,7 @@ import {
     setUserAuthError,
     signInUserWithEmail,
     signInUserWithGoogle
-} from '../../../actions/user'
+} from '@actions/user'
 
 
 export const SingInPaper = (props) => {

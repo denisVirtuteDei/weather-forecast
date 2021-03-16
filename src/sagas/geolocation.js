@@ -3,9 +3,9 @@ import { takeEvery, put, call } from 'redux-saga/effects'
 import {
     GET_USER_GEOLOCATION_REQUEST,
     setCurrentCityInfo,
-} from '../actions/geolocation'
+} from '@actions/geolocation'
 
-import { getGeolocation, getPublicIp } from '../services/axiosRequests'
+import { getGeolocation, getPublicIp } from '@axiosServices'
 
 
 export function* getUserGeolocationWatcher() {

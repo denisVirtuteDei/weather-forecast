@@ -3,11 +3,11 @@ import { takeEvery, put, call } from 'redux-saga/effects'
 import {
     GET_CITY_WEATHER_FORECAST_REQUEST,
     setCityWeatherForecast
-} from '../actions/cityForecast'
+} from '@actions/cityForecast'
 
-import { mapWeatherForecastData } from '../utils/weatherDataMappers'
+import { mapWeatherForecastData } from '@utils/weatherDataMappers'
 
-import { getWeatherForecastByCityName } from '../services/axiosRequests'
+import { getWeatherForecastByCityName } from '@axiosServices'
 
 
 export function* getCityWeatherForecastRequestWatcher() {

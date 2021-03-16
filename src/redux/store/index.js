@@ -8,7 +8,7 @@ import rootReducer from '../reducers'
 import { 
     loadStateFromSessionStorage, 
     saveStateToSessionStorage 
-} from '../../utils/sessionstorage'
+} from '@utils/sessionstorage'
 
 
 export const makeStore = () => {

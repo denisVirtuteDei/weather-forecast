@@ -9,10 +9,10 @@ import { FormWrapper, CustomMenuItem, CustomMenu } from './style'
 import {
     singOutUsingFirebase,
     getAuthUserInfo
-} from '../../../utils/firebase'
+} from '@utils/firebase'
 
-import { ROUTE_TO_SIGN_IN } from '../../../constants'
-import { signOutUserRequest } from '../../../actions/user'
+import { ROUTE_TO_SIGN_IN } from '@constants'
+import { signOutUserRequest } from '@actions/user'
 
 
 export const UserMenu = (props) => {

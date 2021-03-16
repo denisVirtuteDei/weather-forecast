@@ -8,7 +8,7 @@ import {
     OPEN_WEATHER_MAP_API_POINT,
     DEFAULT_GEOLOCATION_API_POINT,
     WEATHER_API_NOT_FOUNDED_ERROR_MESSAGE,
-} from '@constants'
+} from '@/constants'
 
 const axios = setup({
     cache: {

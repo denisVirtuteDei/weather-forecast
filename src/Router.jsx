@@ -7,8 +7,8 @@ import {
 
 import PrivateRoute from '@wrappers/PrivateRoute';
 import ImgContainer from '@blocks/MainBox';
-import SingInPaper from "@blocks/SignInPaper";
-import WeatherForecastPaper from "@blocks/WeatherForecast";
+import SingInPage from "@pages/SignInPage";
+import WeatherForecastPage from "@pages/WeatherForecastPage";
 
 import { ROUTE_TO_FORECAST, ROUTE_TO_SIGN_IN } from '@/constants';
 
@@ -17,10 +17,10 @@ const Router = () => (
         <ImgContainer>
             <Switch>
                 <Route path={ROUTE_TO_SIGN_IN}>
-                    <SingInPaper />
+                    <SingInPage />
                 </Route>
                 <PrivateRoute exact path={ROUTE_TO_FORECAST}>
-                    <WeatherForecastPaper />
+                    <WeatherForecastPage />
                 </PrivateRoute>
             </Switch>
         </ImgContainer>

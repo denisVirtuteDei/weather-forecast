@@ -6,11 +6,23 @@ export const DivWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: ${({theme}) => theme.text};
     forn-size: 0.875rem;
 
     form {
         margin: 0 90px;
+
+        .MuiFormLabel-root {
+            color: currentColor;
+        }
+        
+        .MuiInputBase-root {
+            color: currentColor;
+            .MuiOutlinedInput-input {
+                &:focus {
+                    color: currentColor;
+                }
+            }
+        }       
     }
 
     .sign-in-divider {
@@ -20,7 +32,7 @@ export const DivWrapper = styled.div`
     }
 
     .google-sign-in {
-        width: 70%;
+        width: 69%;
     }
 
     @media (max-width: 600px) {

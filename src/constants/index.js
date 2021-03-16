@@ -20,5 +20,7 @@ export const OPEN_WEATHER_MAP_API_POINT = 'http://api.openweathermap.org/data/2.
 export const MAIN_CONTAINER_IMG = 'http://image.freepik.com/free-photo/sunrise-farmland_181624-15672.jpg'
 export const CENTERED_PAPER_IMG = 'http://image.freepik.com/free-vector/silhouette-japanese-girl-student-standing-road-countryside-evening_42859-620.jpg'
 
+export const LIGHT_THEME_MODE = 'light'
+export const DARK_THEME_MODE = 'dark'
 
 export const WEATHER_API_NOT_FOUNDED_ERROR_MESSAGE = 'The weather resource has not been selected or is not available'

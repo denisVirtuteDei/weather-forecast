@@ -1,16 +1,23 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { lightMainTheme } from '@/themes'
+import { lightMainTheme, darkTheme } from '@/theme'
 
 import GlobalStyles from '@/globalStyles'
+import { LIGHT_THEME_MODE } from '@/constants'
+import { useSelector } from 'react-redux'
 
+export default (props) => {
 
-export default (props) => (
-    <ThemeProvider theme={lightMainTheme}>
-        <>
-            <GlobalStyles />
-            {props.children}
-        </>
-    </ThemeProvider>
-)
+    const themeMode = useSelector(state => state.themeMode.actualThemeMode)
+    const theme = themeMode === LIGHT_THEME_MODE ? lightMainTheme : darkTheme
+
+    return (
+        <ThemeProvider theme={theme}>
+            <>
+                <GlobalStyles />
+                {props.children}
+            </>
+        </ThemeProvider>
+    )
+}

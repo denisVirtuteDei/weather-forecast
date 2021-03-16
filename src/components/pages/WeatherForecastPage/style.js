@@ -29,4 +29,10 @@ export const ReducedGrid = styled(Grid)`
     .current-city-container {
         padding-top: 10px;
     }
+
+    .settings-block-grid {
+        .MuiInputBase-root {
+            color: ${({ theme }) => theme.text};
+        }
+    }
 `

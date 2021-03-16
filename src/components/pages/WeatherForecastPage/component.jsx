@@ -5,13 +5,15 @@ import Divider from '@material-ui/core/Divider'
 
 import { ReducedGrid } from './style'
 
-import UserMenu from '@blocks/UserMenu'
-import CurrentCity from '@blocks/CurrentCity'
 import DateTime from '@blocks/CurrentDateTime'
 import DailyForecast from '@blocks/DailyForecast'
 import CenteredImgDiv from '@blocks/CenteredImgDiv'
-import WeatherApiToggle from '@blocks/WeatherApiToggle'
-import TemperatureUnitToggle from '@blocks/TemperatureUnitToggle'
+
+import UserMenu from '@controls/UserMenu'
+import CurrentCity from '@controls/CurrentCity'
+import WeatherApiToggle from '@controls/WeatherApiToggle'
+import TemperatureUnitToggle from '@controls/TemperatureUnitToggle'
+
 
 
 export const WeatherForecastPaper = (props) => {

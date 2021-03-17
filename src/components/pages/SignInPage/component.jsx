@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { Redirect, useHistory, useLocation } from 'react-router-dom'
 
 import {
     removeUserAuthError,
@@ -30,16 +30,9 @@ import { FormWrapper, GoogleSignInButton } from './style'
 
 
 export const SingInPage = (props) => {
-
-    const currentUser = useSelector(state => state.user)
-
-    if (currentUser.isLogged) return null
-
-    const history = useHistory()
     const location = useLocation()
     const dispatch = useDispatch()
-
-    const { from } = location.state || { from: { pathname: '/' } }
+    const currentUser = useSelector(state => state.user)
 
     const [isSignUp, setIsSignUp] = useState(false)
     const [isEmailValid, setIsEmailValid] = useState(null)
@@ -49,10 +42,6 @@ export const SingInPage = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmationPassword, setConfirmationPassword] = useState('')
-
-    useEffect(() => {
-        if (currentUser.isLogged) history.push(from)
-    }, [currentUser.isLogged])
 
     useEffect(() => {
         setIsEmailValid(emailValidator(email))
@@ -96,11 +85,12 @@ export const SingInPage = (props) => {
             !isPasswordLengthValid
         ) {
             dispatch(signUpUserRequest(email, password))
-            setIsSignUp(false)
         } else if (!isEmailValid && !isPasswordLengthValid) {
             dispatch(signInUserWithEmail(email, password))
         }
     }
+
+    if (currentUser.isLogged) return <Redirect to='/' />
 
     return (
         <CenteredImgDiv>
@@ -176,7 +166,7 @@ export const SingInPage = (props) => {
                     >
                         {isSignUp ? 'Sign up' : 'Log in'}
                     </Button>
-                    <Link href="#" variant="body2" onClick={handleSignUpClick}>
+                    <Link variant="body2" onClick={handleSignUpClick}>
                         {
                             isSignUp
                                 ? `Already have an account? Sign in`

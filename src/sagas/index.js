@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects'
 
 import {
+    signUpUserWithEmailRequestWatcher,
     signInUserWithEmailRequestWatcher,
     signInUserWithGoogleRequestWatcher,
 } from './user'
@@ -11,6 +12,7 @@ import { getCityWeatherForecastRequestWatcher } from './cityForecast'
 export default function* rootSaga() {
     yield all([
         getUserGeolocationWatcher(),
+        signUpUserWithEmailRequestWatcher(),
         signInUserWithEmailRequestWatcher(),
         signInUserWithGoogleRequestWatcher(),
         getCityWeatherForecastRequestWatcher(),

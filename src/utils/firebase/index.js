@@ -31,7 +31,7 @@ export const singInWithEmailUsingFirebase = (email, password) => {
         .catch(error => { throw error })
 }
 
-export const createUserWithEmailUsingFirebase = (email, password) => {
+export const signUpWithEmailUsingFirebase = (email, password) => {
     return firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)

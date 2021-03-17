@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { FormControlLabel, Switch } from './style'
@@ -12,6 +12,12 @@ export const ThemeToggler = (props) => {
     const dispatch = useDispatch()
     const [isDarkMode, setIsDarkMode] = useState(false)
     const themeMode = useSelector(state => state.themeMode.actualThemeMode)
+
+    useEffect(() => {
+        themeMode === LIGHT_THEME_MODE
+            ? setIsDarkMode(false)
+            : setIsDarkMode(true)
+    }, [])
 
     const handleThemeToggler = event => {
         setIsDarkMode(event.target.checked)

@@ -1,6 +1,7 @@
 import {
     SET_USER_AUTH_INFO,
     SET_USER_AUTH_ERROR,
+    REMOVE_USER_AUTH_ERROR,
     SING_OUT_USER_REQUEST,
     SING_IN_USER_WITH_EMAIL_REQUEST,
     SING_IN_USER_WITH_GOOGLE_REQUEST,
@@ -19,7 +20,7 @@ export default function userReducer(state = initUserState, action) {
         case SET_USER_AUTH_ERROR:
             return {
                 ...state,
-                isError: action.payload.flag,
+                isError: true,
                 errorInfo: action.payload.error,
             }
         case SET_USER_AUTH_INFO:
@@ -40,8 +41,14 @@ export default function userReducer(state = initUserState, action) {
                 isError: false,
                 isLogged: false,
             }
+        case REMOVE_USER_AUTH_ERROR:
+            return {
+                ...state,
+                errorInfo: '',
+                isError: false,
+            }
         case SING_IN_USER_WITH_EMAIL_REQUEST: return { ...state }
         case SING_IN_USER_WITH_GOOGLE_REQUEST: return { ...state }
-        default: return { ...state }
+        default: return state
     }
 }

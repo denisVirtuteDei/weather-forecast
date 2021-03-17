@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 
-export const DivWrapper = styled.div`
+export const FormWrapper = styled.div`
     padding: 80px 0;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,11 @@ export const DivWrapper = styled.div`
                     color: currentColor;
                 }
             }
-        }       
+        }
+        
+        a {
+            justify-content: flex-end;
+        }
     }
 
     .sign-in-divider {

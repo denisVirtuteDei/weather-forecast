@@ -1,3 +1,3 @@
-import { SingInPaper } from './component';
+import { SingInPage } from './component';
 
-export default SingInPaper;
+export default SingInPage;

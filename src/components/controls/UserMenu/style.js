@@ -1,21 +1,26 @@
 import styled from 'styled-components'
 
-import { Menu, MenuItem } from '@material-ui/core'
+import MaterialToolBar from '@material-ui/core/Toolbar'
 
-export const FormWrapper = styled.div``
+export const ToolBar = styled(MaterialToolBar)`
+    display: flex;
+    justify-content: space-between;
 
-export const CustomMenu = styled(Menu)`
-    paper {
-        background-color: #d3d4d5;
+    .user-block{
+        display: flex;
+        align-items: center;
     }
-`
 
-export const CustomMenuItem = styled(MenuItem)`
+    .user-block-collapse {
+        display: none;
+    }
 
-    &:focus {
-        background-color: white;
-        & .MuiListItemIcon-root, & .MuiListItemText-primary {
-            color: black;
+    @media (max-width: 600px) {
+        .user-block {
+            display: none;
+        }
+        .user-block-collapse {
+            display: block;
         }
     }
 `

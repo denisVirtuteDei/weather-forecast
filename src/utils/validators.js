@@ -1,15 +1,16 @@
-export const emailValidator = email => {
-    return email &&
-        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-            .test(email)
-}
+export const emailValidator = email => email.length !== 0
+    ? /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+        .test(email)
+        ? ''
+        : 'Incorrect email'
+    : ''
 
-export const passwordLengthValidator = password => {
-    if (password) return password.length >= 6
-    else return null
-}
+export const passwordLengthValidator = password => password &&
+    password.length < 6
+    ? 'Less than 6 symbols'
+    : ''
 
-export const isEqual = (left, right) => {
-    if (left && right) return left.localeCompare(right) === 0
-    else return null
-}
+export const isEqual = (left, right) => left && right &&
+    left.localeCompare(right) !== 0
+    ? 'Passwords aren\'t equal'
+    : ''

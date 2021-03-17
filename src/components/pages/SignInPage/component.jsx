@@ -91,13 +91,13 @@ export const SingInPage = (props) => {
         e.preventDefault()
         if (
             isSignUp &&
-            isEmailValid &&
-            isPasswordsEqual &&
-            isPasswordLengthValid
+            !isEmailValid &&
+            !isPasswordsEqual &&
+            !isPasswordLengthValid
         ) {
             dispatch(signUpUserRequest(email, password))
             setIsSignUp(false)
-        } else if (isEmailValid && isPasswordLengthValid) {
+        } else if (!isEmailValid && !isPasswordLengthValid) {
             dispatch(signInUserWithEmail(email, password))
         }
     }
@@ -108,36 +108,30 @@ export const SingInPage = (props) => {
                 <h1>Welcome</h1>
                 <form className='form' onSubmit={handleOnSubmitFormSignIn}>
                     <TextField
-                        error={!isEmailValid}
+                        error={!!isEmailValid}
+                        helperText={isEmailValid}
                         required
                         fullWidth
                         autoFocus
-                        margin='normal'
-                        variant='outlined'
                         id='email'
                         label='Email Address'
+                        margin='normal'
+                        variant='outlined'
                         value={email}
                         onChange={handleEmailOnChange}
-                        helperText={
-                            !isEmailValid
-                                ? 'Incorrect email'
-                                : ''
-                        }
                     />
                     <TextField
                         error={
-                            !isPasswordLengthValid || (
+                            !!isPasswordLengthValid || (
                                 isSignUp
-                                    ? !isPasswordsEqual
-                                    : true
+                                    ? !!isPasswordsEqual
+                                    : false
                             )
                         }
                         helperText={
-                            !isPasswordLengthValid
-                                ? 'Password length less than 6'
-                                : isSignUp && !isPasswordsEqual
-                                    ? 'Passwords aren\'t equal'
-                                    : ''
+                            isPasswordLengthValid || (
+                                isSignUp ? isPasswordsEqual : ''
+                            )
                         }
                         required
                         fullWidth
@@ -153,23 +147,16 @@ export const SingInPage = (props) => {
                         isSignUp ? (
                             <TextField
                                 error={
-                                    !isPasswordLengthValid || (
-                                        isSignUp
-                                            ? !isPasswordsEqual
-                                            : true
-                                    )
+                                    !!isPasswordLengthValid ||
+                                    !!isPasswordsEqual
                                 }
-                                helperText={
-                                    !isPasswordsEqual
-                                        ? 'Passwords aren\'t equal'
-                                        : ''
-                                }
+                                helperText={isPasswordsEqual}
                                 required
                                 fullWidth
                                 margin='normal'
                                 variant='outlined'
-                                type='password'
                                 id='confirmationPassword'
+                                type='password'
                                 label='Confirm password'
                                 value={confirmationPassword}
                                 onChange={handleConfirmationPasswordOnChange}
@@ -187,9 +174,7 @@ export const SingInPage = (props) => {
                         color='primary'
                         variant='contained'
                     >
-                        {
-                            isSignUp ? 'Sign up' : 'Log in'
-                        }
+                        {isSignUp ? 'Sign up' : 'Log in'}
                     </Button>
                     <Link href="#" variant="body2" onClick={handleSignUpClick}>
                         {
@@ -200,19 +185,21 @@ export const SingInPage = (props) => {
                     </Link>
                 </form>
                 {
-                    !isSignUp ? (
-                        <>
-                            <Divider className='sign-in-divider' variant='middle' />
-                            <GoogleSignInButton
-                                className='google-sign-in'
-                                variant='contained'
-                                color='secondary'
-                                onClick={handleSignInWithGoogleAccount}
-                            >
-                                Google sign-in
-                        </GoogleSignInButton>
-                        </>
-                    ) : (null)
+                    isSignUp
+                        ? (null)
+                        : (
+                            <>
+                                <Divider className='sign-in-divider' variant='middle' />
+                                <GoogleSignInButton
+                                    className='google-sign-in'
+                                    variant='contained'
+                                    color='secondary'
+                                    onClick={handleSignInWithGoogleAccount}
+                                >
+                                    Google sign-in
+                            </GoogleSignInButton>
+                            </>
+                        )
                 }
             </FormWrapper>
         </CenteredImgDiv>

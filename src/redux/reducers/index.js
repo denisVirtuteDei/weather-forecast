@@ -6,8 +6,8 @@ import forecast from './cityForecastReducer'
 import geolocation from './geolocationReducer'
 
 export default combineReducers({ 
-    user,
-    forecast,
-    themeMode,
-    geolocation,
+	user,
+	forecast,
+	themeMode,
+	geolocation,
 })

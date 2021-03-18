@@ -1,3 +1,3 @@
-import MainBox from './component';
+import MainBox from './component'
 
-export default MainBox;
+export default MainBox

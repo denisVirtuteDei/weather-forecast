@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const DatetimeDivWrapper = styled.div`
     .time-div {

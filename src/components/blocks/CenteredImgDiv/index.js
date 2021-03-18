@@ -1,3 +1,3 @@
-import { CenteredImgDiv } from './style';
+import { CenteredImgDiv } from './style'
 
-export default CenteredImgDiv;
+export default CenteredImgDiv

@@ -2,57 +2,57 @@ import React from 'react'
 import moment from 'moment'
 
 import {
-    CenteredDiv,
-    TodayDiv,
-    WeatherIcon
+	CenteredDiv,
+	TodayDiv,
+	WeatherIcon,
 } from './style'
 
 import {
-    tempToAcceptableForm,
-    celsiusToFahrenheit
+	tempToAcceptableForm,
+	celsiusToFahrenheit,
 } from '@utils/weatherDataMappers'
 
 import {
-    CELSIUS_TEMP_UNIT,
-    MILLISECONDS_IN_SECONDS,
+	CELSIUS_TEMP_UNIT,
+	MILLISECONDS_IN_SECONDS,
 } from '@/constants'
 
 
 export default (props) => {
 
-    const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd');
-    const weatherIconCode = props.weather.icon || 'unknown';
-    const weatherDesc = props.weather.description;
-    const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT ?
-        tempToAcceptableForm(props.temp) :
-        tempToAcceptableForm(celsiusToFahrenheit(props.temp));
+	const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd')
+	const weatherIconCode = props.weather.icon || 'unknown'
+	const weatherDesc = props.weather.description
+	const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT
+		? tempToAcceptableForm(props.temp)
+		: tempToAcceptableForm(celsiusToFahrenheit(props.temp))
 
-    return (
-        props.index === 0
-            ? (
-                <CenteredDiv>
-                    <TodayDiv>
-                        <div className='icon'>
-                            <WeatherIcon
-                                src={`icons/${weatherIconCode}.png`}
-                                alt={weatherDesc}
-                            />
-                        </div>
-                        <div className='weekday'>{weekday}</div>
-                        <div className='temperature'>{temp}</div>
-                    </TodayDiv>
-                </CenteredDiv>
-            ) : (
-                <CenteredDiv>
-                    <div>{weekday}</div>
-                    <div>
-                        <WeatherIcon
-                            src={`icons/${weatherIconCode}.png`}
-                            alt={weatherDesc}
-                        />
-                    </div>
-                    <div>{temp}</div>
-                </CenteredDiv>
-            )
-    )
+	return (
+		props.index === 0
+			? (
+				<CenteredDiv>
+					<TodayDiv>
+						<div className='icon'>
+							<WeatherIcon
+								src={`icons/${weatherIconCode}.png`}
+								alt={weatherDesc}
+							/>
+						</div>
+						<div className='weekday'>{weekday}</div>
+						<div className='temperature'>{temp}</div>
+					</TodayDiv>
+				</CenteredDiv>
+			) : (
+				<CenteredDiv>
+					<div>{weekday}</div>
+					<div>
+						<WeatherIcon
+							src={`icons/${weatherIconCode}.png`}
+							alt={weatherDesc}
+						/>
+					</div>
+					<div>{temp}</div>
+				</CenteredDiv>
+			)
+	)
 }

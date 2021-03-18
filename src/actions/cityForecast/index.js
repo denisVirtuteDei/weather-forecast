@@ -1,1 +1,1 @@
-export * from './cityForecast';
+export * from './cityForecast'

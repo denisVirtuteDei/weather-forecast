@@ -1,3 +1,3 @@
-import { SingInPage } from './component';
+import { SingInPage } from './component'
 
-export default SingInPage;
+export default SingInPage

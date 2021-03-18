@@ -8,4 +8,4 @@ const GlobalStyles = createGlobalStyle`
         font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 `
-export default GlobalStyles;
+export default GlobalStyles

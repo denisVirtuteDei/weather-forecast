@@ -1,5 +1,6 @@
+import { SET_THEME_MODE } from '@/actions/themeMode'
+
 import { LIGHT_THEME_MODE } from '@/constants'
-import { SET_THEME_MODE } from '@actions/themeMode'
 
 const initThemeModeState = {
 	actualThemeMode: LIGHT_THEME_MODE,

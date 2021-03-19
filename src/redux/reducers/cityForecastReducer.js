@@ -3,9 +3,12 @@ import {
 	SET_CITY_WEATHER_FORECAST,
 	SET_WEATHER_FORECAST_API_NAME,
 	GET_CITY_WEATHER_FORECAST_REQUEST,
-} from '@actions/cityForecast'
+} from '@/actions/cityForecast'
 
-import { CELSIUS_TEMP_UNIT, OPEN_WEATHER_MAP_API_NAME } from '@/constants'
+import {
+	CELSIUS_TEMP_UNIT,
+	OPEN_WEATHER_MAP_API_NAME,
+} from '@/constants'
 
 const initForecastState = {
 	cityForecast: [],
@@ -39,6 +42,6 @@ export default (state = initForecastState, action) => {
 				cityForecast: action.payload,
 			}
 		case GET_CITY_WEATHER_FORECAST_REQUEST: return { ...state }
-		default: return { ...state }
+		default: return state
 	}
 }

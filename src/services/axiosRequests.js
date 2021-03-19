@@ -5,20 +5,19 @@ import {
 	WEATHER_BIT_API_KEY,
 	WEATHER_BIT_API_NAME,
 	WEATHER_BIT_API_POINT,
-	MILLISECONDS_IN_SECONDS,
+	GEOLOCATION_API_TOKEN,
+	GEOLOCATION_API_POINT,
 	OPEN_WEATHER_MAP_API_KEY,
 	OPEN_WEATHER_MAP_API_NAME,
 	OPEN_WEATHER_MAP_API_POINT,
-	DEFAULT_GEOLOCATION_API_POINT,
 	WEATHER_API_NOT_FOUNDED_ERROR_MESSAGE,
-} from '@constants'
-import { } from '../constants/endpoints'
+} from '@/constants'
 
-const axios = setup({ cache: { maxAge: 15 * 60 * MILLISECONDS_IN_SECONDS } })
+const axios = setup({ cache: { maxAge: 15 * 60 * 1000 } })
 
 export const getGeolocation = ip => {
-	return axios.get(DEFAULT_GEOLOCATION_API_POINT + ip, {
-		params: { token: process.env.REACT_APP_GEOLOCATION_TOKEN_PARAM },
+	return axios.get(GEOLOCATION_API_POINT + ip, {
+		params: { token: GEOLOCATION_API_TOKEN },
 	})
 }
 
@@ -38,8 +37,7 @@ export const getWeatherForecastByCityName = (cityName, weatherApiName) => {
 					appid: OPEN_WEATHER_MAP_API_KEY,
 				},
 			})
-		default:
-			throw Error(WEATHER_API_NOT_FOUNDED_ERROR_MESSAGE)
+		default: throw Error('Unknown problem')
 	}
 }
 

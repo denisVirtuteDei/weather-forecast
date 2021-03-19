@@ -3,19 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import {
-	removeUserAuthError,
-	signUpUserRequest,
-	signInUserWithEmail,
-	signInUserWithGoogle,
-} from '@actions/user'
-
-import {
-	isEqual,
-	emailValidator,
-	passwordLengthValidator,
-} from '@utils/validators'
-
-import {
 	Button,
 	Checkbox,
 	Divider,
@@ -24,12 +11,25 @@ import {
 	TextField,
 } from '@material-ui/core'
 
-import CenteredImgDiv from '@blocks/CenteredImgDiv'
+import CenteredImgDiv from '@/components/blocks/CenteredImgDiv'
 
 import { FormWrapper, GoogleSignInButton } from './style'
 
+import { removeErrorInfo } from '@/actions/error'
+import {
+	signUpUserRequest,
+	signInUserWithEmail,
+	signInUserWithGoogle,
+} from '@/actions/user'
 
-export const SingInPage = (props) => {
+import {
+	isEqual,
+	emailValidator,
+	passwordLengthValidator,
+} from '@/utils/validators'
+
+
+const SingInPage = (props) => {
 	const dispatch = useDispatch()
 	const currentUser = useSelector(state => state.user)
 
@@ -67,12 +67,15 @@ export const SingInPage = (props) => {
 
 	const handleSignUpClick = () => {
 		setIsSignUp(() => !isSignUp)
-		dispatch(removeUserAuthError())
+		setEmail('')
+		setPassword('')
+		setConfirmationPassword('')
+		dispatch(removeErrorInfo())
 	}
 
 	const handleSignInWithGoogleAccount = () => {
 		dispatch(signInUserWithGoogle())
-		dispatch(removeUserAuthError())
+		dispatch(removeErrorInfo())
 	}
 
 	const handleOnSubmitFormSignIn = e => {
@@ -84,8 +87,10 @@ export const SingInPage = (props) => {
 			!isPasswordLengthValid
 		) {
 			dispatch(signUpUserRequest(email, password))
+			dispatch(removeErrorInfo())
 		} else if (!isEmailValid && !isPasswordLengthValid) {
 			dispatch(signInUserWithEmail(email, password))
+			dispatch(removeErrorInfo())
 		}
 	}
 
@@ -194,3 +199,5 @@ export const SingInPage = (props) => {
 		</CenteredImgDiv>
 	)
 }
+
+export default SingInPage

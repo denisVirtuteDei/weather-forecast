@@ -6,7 +6,7 @@ import GlobalStyles from '@/globalStyles'
 
 import { lightMainTheme, darkTheme } from '@/theme'
 
-import { LIGHT_THEME_MODE } from '@constants'
+import { LIGHT_THEME_MODE } from '@/constants'
 
 export default (props) => {
 

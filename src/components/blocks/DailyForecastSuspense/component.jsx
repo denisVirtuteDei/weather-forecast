@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const DailyForecastSuspense = () => (
+export default () => (
 	<>
 		<div>Today</div>
 		<div>Tomorrow</div>

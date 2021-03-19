@@ -1,7 +1,7 @@
 import {
-	GET_USER_GEOLOCATION_REQUEST,
 	SET_CURRENT_CITY_INFO,
-} from '@actions/geolocation'
+	GET_USER_GEOLOCATION_REQUEST,
+} from '@/actions/geolocation'
 
 const initGeoState = {
 	city: '',

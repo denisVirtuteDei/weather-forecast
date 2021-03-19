@@ -4,21 +4,24 @@ import { useHistory } from 'react-router-dom'
 
 import { AppBar, Divider, MenuItem, Typography } from '@material-ui/core'
 
+import ThemeToggler from '@/components/controls/ThemeToggler'
+import AppbarUserMenu from '@/components/controls/AppbarUserMenu'
+
 import { ToolBar } from './style'
 
-import ThemeToggler from '@controls/ThemeToggler'
+import {removeErrorInfo} from '@/actions/error'
 
 import {
 	singOutUsingFirebase,
 	getAuthUserInfo,
-} from '@utils/firebase'
+} from '@/utils/firebase'
 
-import AppbarUserMenu from '../AppbarUserMenu'
 import { ROUTE_TO_SIGN_IN } from '@/constants'
-import { signOutUserRequest } from '@actions/user'
+
+import { signOutUserRequest } from '@/actions/user'
 
 
-export const UserMenu = (props) => {
+export default (props) => {
 
 	const history = useHistory()
 	const dispatch = useDispatch()
@@ -26,6 +29,7 @@ export const UserMenu = (props) => {
 
 	const handleSignOutClick = () => {
 		dispatch(signOutUserRequest())
+		dispatch(removeErrorInfo())
 		singOutUsingFirebase()
 		history.push(ROUTE_TO_SIGN_IN)
 	}

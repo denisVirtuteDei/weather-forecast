@@ -8,7 +8,6 @@ export const FormControlLabel = styled(MaterialFormControlLabel)`
     font-size: 0.8rem;
     padding: 0.6rem;
 `
-
 export const Switch = styled(MaterialSwitch)`
 
     .MuiSwitch-switchBase {

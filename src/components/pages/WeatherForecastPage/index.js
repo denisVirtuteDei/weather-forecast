@@ -1,3 +1,3 @@
-import {WeatherForecastPaper} from './component'
+import WeatherForecastPaper from './component'
 
 export default WeatherForecastPaper

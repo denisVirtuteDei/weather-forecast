@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
 import '@geoapify/geocoder-autocomplete/styles/round-borders.css'
 
-import { getUserGeolocationRequest, setCurrentCityInfo } from '@actions/geolocation'
+import { getUserGeolocationRequest, setCurrentCityInfo } from '@/actions/geolocation'
 
-const CurrentCity = (props) => {
+export default (props) => {
 
 	const dispatch = useDispatch()
 	const geolocation = useSelector(state => state.geolocation)
+	
 	const [inputCityInfo, setInputCityInfo] = useState(null)
 
 	useEffect(() => {
@@ -28,17 +29,14 @@ const CurrentCity = (props) => {
 		}
 	}
 
-
 	return (
 		<GeoapifyContext apiKey={process.env.REACT_APP_GEOPIFY_API_KEY}>
 			<GeoapifyGeocoderAutocomplete
-				placeholder="Enter address here"
 				type='city'
+				placeholder="Enter address here"
 				placeSelect={onPlaceSelect}
-				value={(inputCityInfo && inputCityInfo.formatted) || geolocation.formatted}
+				value={inputCityInfo && inputCityInfo.city}
 			/>
 		</GeoapifyContext>
 	)
 }
-
-export default CurrentCity

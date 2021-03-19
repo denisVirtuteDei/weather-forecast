@@ -23,6 +23,8 @@ export const TodayDiv = styled.div`
 		grid-column-start: span 1;
 		grid-row-start: span 2;
 		justify-self: flex-end;
+		width: 110px;
+		height: 110px;
 	}
 `
 

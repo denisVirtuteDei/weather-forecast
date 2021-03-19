@@ -1,18 +1,17 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
+import { setErrorInfo } from '@/actions/error'
 import {
 	signUpWithEmailUsingFirebase,
 	singInWithEmailUsingFirebase,
 	singInWithGoogleAccountUsingFirebase,
-} from '@utils/firebase'
-
+} from '@/utils/firebase'
 import {
 	setUserAuthInfo,
-	setUserAuthError,
 	SIGN_UP_USER_REQUEST,
 	SING_IN_USER_WITH_EMAIL_REQUEST,
 	SING_IN_USER_WITH_GOOGLE_REQUEST,
-} from '@actions/user'
+} from '@/actions/user'
 
 export function* signInUserWithGoogleRequestWatcher() {
 	yield takeEvery(
@@ -26,7 +25,7 @@ function* signInUserWithGoogleWorker() {
 		const userData = yield call(singInWithGoogleAccountUsingFirebase)
 		yield put(setUserAuthInfo(userData))
 	} catch (error) {
-		yield put(setUserAuthError(error.message))
+		yield put(setErrorInfo(error.message))
 	}
 }
 
@@ -46,7 +45,7 @@ function* signInUserWithEmailWorker({ payload }) {
 		)
 		yield put(setUserAuthInfo(userData))
 	} catch (error) {
-		yield put(setUserAuthError(error.message))
+		yield put(setErrorInfo(error.message))
 	}
 }
 
@@ -66,7 +65,7 @@ function* signUpUserWithEmailWorker({ payload }) {
 		)
 		yield put(setUserAuthInfo(userData))
 	} catch (error) {
-		yield put(setUserAuthError(error.message))
+		yield put(setErrorInfo(error.message))
 	}
 }
 

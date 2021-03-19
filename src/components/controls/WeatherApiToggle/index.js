@@ -1,3 +1,3 @@
-import { WeatherApiToggle } from './component'
+import WeatherApiToggle from './component'
 
 export default WeatherApiToggle

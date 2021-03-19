@@ -5,7 +5,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 
-import { setTemperatureUnit } from '@actions/cityForecast'
+import { setTemperatureUnit } from '@/actions/cityForecast'
 
 import {
 	CELSIUS_TEMP_UNIT,
@@ -13,7 +13,7 @@ import {
 } from '@/constants'
 
 
-export const TemperatureUnitToggle = (props) => {
+export default (props) => {
 
 	const dispatch = useDispatch()
 	const fsettings = useSelector(state => state.forecast.forecastSettings)

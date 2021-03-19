@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 
-import { DatetimeDivWrapper } from './style'
+import { DatetimeWrapper } from './style'
 
 
-export const DateTime = (props) => {
+export default (props) => {
 
 	const [date, setDate] = useState(moment())
 
@@ -14,9 +14,9 @@ export const DateTime = (props) => {
 	}, [])
 
 	return (
-		<DatetimeDivWrapper>
+		<DatetimeWrapper>
 			<div className='time-div'>{date.format('HH:mm')}</div>
 			<div className='date-div'>{date.format('ddd, DD MMMM YYYY')}</div>
-		</DatetimeDivWrapper>
+		</DatetimeWrapper>
 	)
 }

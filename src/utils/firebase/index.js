@@ -13,6 +13,7 @@ const firebaseConfig = {
 if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig)
 
 const provider = new firebase.auth.GoogleAuthProvider()
+
 export default firebase
 
 export const singInWithGoogleAccountUsingFirebase = () => {
@@ -45,7 +46,7 @@ export const checkUserAuth = () => {
 			if (user) {
 				resolve(true)
 			} else {
-				resolve(false)
+				reject(false)
 			}
 		})
 	})

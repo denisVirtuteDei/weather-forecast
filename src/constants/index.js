@@ -1,5 +1,4 @@
 export * from './routes'
 export * from './nameAliases'
 export * from './endpoints'
-export * from './digits'
 export * from './imgSources'

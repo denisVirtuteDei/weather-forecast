@@ -1,14 +1,14 @@
 import { takeEvery, put, call } from 'redux-saga/effects'
 
+import { setErrorInfo } from '@/actions/error'
 import {
     GET_CITY_WEATHER_FORECAST_REQUEST,
     setCityWeatherForecast,
-} from '@actions/cityForecast'
+} from '@/actions/cityForecast'
 
-import { mapWeatherForecastData } from '@utils/weatherDataMappers'
+import { mapWeatherForecastData } from '@/utils/weatherDataMappers'
 
-import { getWeatherForecastByCityName } from '@services/axiosRequests'
-
+import { getWeatherForecastByCityName } from '@/services/axiosRequests'
 
 export function* getCityWeatherForecastRequestWatcher() {
     yield takeEvery(
@@ -19,9 +19,11 @@ export function* getCityWeatherForecastRequestWatcher() {
 
 function* getCityWeatherForecastWorker({ payload }) {
     try {
-        const response = yield call(getWeatherForecastByCityName, payload.cityName, payload.fapi)
-        const dailyWeatherDataList = yield call(mapWeatherForecastData, response.data, payload.fapi)
+        const response = yield call(getWeatherForecastByCityName, payload.cityTitle, payload.apiName)
+        const dailyWeatherDataList = yield call(mapWeatherForecastData, response.data, payload.apiName)
         yield put(setCityWeatherForecast(dailyWeatherDataList))
-    } catch (error) { throw error }
+    } catch (error) { 
+        yield put(setErrorInfo(error.message))
+    }
     
 }

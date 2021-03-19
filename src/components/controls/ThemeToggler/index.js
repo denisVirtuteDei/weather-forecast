@@ -1,3 +1,3 @@
-import { ThemeToggler } from './component'
+import ThemeToggler from './component'
 
 export default ThemeToggler

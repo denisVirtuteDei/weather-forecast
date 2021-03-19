@@ -1,4 +1,5 @@
 export const emailValidator = email => email.length !== 0
+    // eslint-disable-next-line no-useless-escape
     ? /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
         .test(email)
         ? ''

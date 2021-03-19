@@ -10,19 +10,18 @@ import {
 import {
 	tempToAcceptableForm,
 	celsiusToFahrenheit,
-} from '@utils/weatherDataMappers'
+} from '@/utils/weatherDataMappers'
 
-import {
-	CELSIUS_TEMP_UNIT,
-	MILLISECONDS_IN_SECONDS,
-} from '@/constants'
+import { CELSIUS_TEMP_UNIT } from '@/constants'
 
 
 export default (props) => {
 
-	const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd')
-	const weatherIconCode = props.weather.icon || 'unknown'
+	const MILLISECONDS_IN_SECONDS = 1000
+
 	const weatherDesc = props.weather.description
+	const weatherIconCode = props.weather.icon || 'unknown'
+	const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd')
 	const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT
 		? tempToAcceptableForm(props.temp)
 		: tempToAcceptableForm(celsiusToFahrenheit(props.temp))

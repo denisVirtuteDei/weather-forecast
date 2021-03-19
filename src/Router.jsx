@@ -4,22 +4,22 @@ import {
     Switch,
     Route,
     Redirect,
-} from "react-router-dom";
+} from 'react-router-dom'
 
-import PrivateRoute from '@wrappers/PrivateRoute';
-import ImgContainer from '@blocks/MainBox';
-import SingInPage from "@pages/SignInPage";
-import WeatherForecastPage from "@pages/WeatherForecastPage";
+import SingInPage from './components/pages/SignInPage'
+import BasicLayout from './components/layout/BasicLayout'
+import PrivateRoute from './components/wrappers/PrivateRoute'
+import WeatherForecastPage from './components/pages/WeatherForecastPage'
 
 import {
     ROUTE_TO_FORECAST,
     ROUTE_TO_SIGN_IN,
     FAKE_ROUTES,
-} from '@/constants';
+} from './constants'
 
 const Router = () => (
     <BrowserRouter>
-        <ImgContainer>
+        <BasicLayout>
             <Switch>
                 <Route path={ROUTE_TO_SIGN_IN}>
                     <SingInPage />
@@ -29,8 +29,8 @@ const Router = () => (
                 </PrivateRoute>
                 <Redirect from={FAKE_ROUTES} to={ROUTE_TO_FORECAST} />
             </Switch>
-        </ImgContainer>
+        </BasicLayout>
     </BrowserRouter>
 )
 
-export default Router;
+export default Router

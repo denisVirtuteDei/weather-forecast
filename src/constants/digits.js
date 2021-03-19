@@ -1,1 +1,0 @@
-export const MILLISECONDS_IN_SECONDS = 1000

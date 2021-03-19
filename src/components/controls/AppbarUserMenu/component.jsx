@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 
-export const AppbarUserMenu = (props) => {
+export default (props) => {
 
 	const [anchorEl, setAnchorEl] = useState(null)
 

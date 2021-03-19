@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DatetimeDivWrapper = styled.div`
+export const DatetimeWrapper = styled.div`
     .time-div {
         font-size: 2rem;
     }    

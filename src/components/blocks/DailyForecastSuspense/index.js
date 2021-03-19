@@ -1,3 +1,3 @@
-import { DailyForecastSuspense } from './component'
+import DailyForecastSuspense from './component'
 
 export default DailyForecastSuspense

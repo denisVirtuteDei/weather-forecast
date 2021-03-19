@@ -1,3 +1,3 @@
-import { AppbarUserMenu } from './component'
+import AppbarUserMenu from './component'
 
 export default AppbarUserMenu

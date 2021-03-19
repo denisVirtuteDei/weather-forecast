@@ -1,3 +1,3 @@
-import { UserMenu } from './component'
+import UserMenu from './component'
 
 export default UserMenu

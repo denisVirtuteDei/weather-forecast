@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { FormControlLabel, Switch } from './style'
 
-import { setThemeMode } from '@actions/themeMode'
+import { setThemeMode } from '@/actions/themeMode'
 
 import { DARK_THEME_MODE, LIGHT_THEME_MODE } from '@/constants'
 
 
-export const ThemeToggler = (props) => {
+export default (props) => {
 	const dispatch = useDispatch()
 	const [isDarkMode, setIsDarkMode] = useState(false)
 	const themeMode = useSelector(state => state.themeMode.actualThemeMode)

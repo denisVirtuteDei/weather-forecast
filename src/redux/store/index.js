@@ -2,13 +2,13 @@ import createSagaMiddleware from 'redux-saga'
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import rootSaga from '../../sagas'
-import rootReducer from '../reducers'
+import rootSaga from '@/sagas'
+import rootReducer from '@/redux/reducers'
 
-import { 
-	loadStateFromSessionStorage, 
+import {
+	loadStateFromSessionStorage,
 	saveStateToSessionStorage,
-} from '@utils/sessionstorage'
+} from '@/utils/sessionstorage'
 
 
 export const makeStore = () => {
@@ -23,10 +23,7 @@ export const makeStore = () => {
 	sagaMiddleware.run(rootSaga)
 
 	store.subscribe(() => {
-		saveStateToSessionStorage({ 
-			user: store.getState().user,
-			themeMode: store.getState().themeMode,
-		})
+		saveStateToSessionStorage(store.getState())
 	})
 
 	return store

@@ -1,65 +1,85 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
-    },
-    "parser": "babel-eslint",
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "linebreak-style": [
-            "warn",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ],
-        "no-unused-vars": "off",
-        "operator-linebreak": "warn",
-        "react/jsx-closing-tag-location": 2,
-        "react/jsx-max-props-per-line": [
-            2,
-            {
-                "maximum": 4,
-                "when": "always"
-            }
-        ],
-        "react/jsx-filename-extension": [
-            2,
-            {
-                "extensions": [
-                    ".jsx"
-                ]
-            }
-        ],
-        "comma-dangle": [
-            2,
-            "always-multiline"
-        ]
-    },
-    "overrides": [
-        {
-            "files": [
-                "src/index.js"
-            ],
-            "rules": {
-                "react/jsx-filename-extension": "off"
-            }
-        }
-    ]
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"parser": "babel-eslint",
+	"extends": ["eslint:recommended", "prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "prettier", "react-hooks"],
+	"rules": {
+		"arrow-body-style": "off",
+		"prefer-arrow-callback": "off",
+		"eqeqeq": "error",
+		"no-multi-spaces": "error",
+		"no-useless-escape": "off",
+		"arrow-parens": ["error", "as-needed"],
+		"indent": ["warn", "tabs"],
+		"quotes": ["error", "single", { "avoidEscape": true }],
+		"semi": ["error", "never"],
+		"comma-dangle": [
+			"error",
+			{
+				"export": "only-multiline",
+				"import": "always-multiline"
+			}
+		],
+		"no-unused-vars": [
+			"warn",
+			{
+				"varIgnorePattern": "props",
+				"caughtErrors": "all"
+			}
+		],
+		"operator-linebreak": [
+			"warn",
+			"after",
+			{
+				"overrides": {
+					"?": "before",
+					":": "before"
+				}
+			}
+		],
+		"max-len": [
+			"warn",
+			{
+				"code": 100,
+				"ignoreUrls": true,
+				"ignorePattern": "import"
+			}
+		],
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"react/jsx-closing-tag-location": "error",
+		"react/prop-types": "warn",
+		"react/jsx-max-props-per-line": [
+			"error",
+			{
+				"maximum": 4,
+				"when": "always"
+			}
+		],
+		"react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": [".jsx"]
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": ["src/index.js"],
+			"rules": {
+				"react/jsx-filename-extension": "off"
+			}
+		}
+	]
 }

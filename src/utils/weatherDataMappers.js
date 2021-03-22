@@ -1,4 +1,4 @@
-import { OPEN_WEATHER_MAP_API_NAME, WEATHER_BIT_API_NAME } from '@/constants'
+import { OPEN_WEATHER_MAP_API_NAME, WEATHER_BIT_API_NAME, NOON_TIME } from '@/constants'
 
 export const mapWeatherForecastData = (weatherForecastData, apiName) => {
   switch (apiName) {
@@ -10,7 +10,7 @@ export const mapWeatherForecastData = (weatherForecastData, apiName) => {
       }))
     case OPEN_WEATHER_MAP_API_NAME:
       return weatherForecastData.list
-        .filter(el => el.dt_txt.includes('15:00:00'))
+        .filter(el => el.dt_txt.includes(NOON_TIME))
         .map(el => ({
           weather: el.weather[0],
           temp: el.main.temp,
@@ -27,4 +27,4 @@ export const mapWeatherForecastData = (weatherForecastData, apiName) => {
 
 export const celsiusToFahrenheit = tempValue => Math.round(tempValue * 1.8 + 32)
 
-export const tempToAcceptableForm = tempValue => `${Math.round(tempValue)}°`
+export const tempToAcceptableForm = tempValue => `${Math.round(tempValue)}`

@@ -9,6 +9,8 @@ import '@geoapify/geocoder-autocomplete/styles/round-borders.css'
 
 import { getUserGeolocationRequest, setCurrentCityInfo } from '@/actions/geolocation'
 
+import { GEOPIFY_API_KEY } from '@/constants'
+
 const CurrentCity = () => {
   const dispatch = useDispatch()
   const geolocation = useSelector(state => state.geolocation)
@@ -32,7 +34,7 @@ const CurrentCity = () => {
   }
 
   return (
-    <GeoapifyContext apiKey={process.env.REACT_APP_GEOPIFY_API_KEY}>
+    <GeoapifyContext apiKey={GEOPIFY_API_KEY}>
       <GeoapifyGeocoderAutocomplete
         type='city'
         placeholder='Enter address here'

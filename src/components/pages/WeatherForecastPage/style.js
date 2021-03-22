@@ -14,11 +14,11 @@ export const ReducedGrid = styled(Grid)`
 
   .settings-block-divider {
     padding: 10px 0;
-    color: black;
     margin: 0 10px;
 
     hr {
       width: 100%;
+      background-color: ${({ theme }) => theme.divider};
     }
   }
 
@@ -28,6 +28,9 @@ export const ReducedGrid = styled(Grid)`
 
   .current-city-container {
     padding-top: 10px;
+    .geoapify-autocomplete-item {
+      color: ${({theme}) => theme.autocompleteText};
+    }
   }
 
   .settings-block-grid {

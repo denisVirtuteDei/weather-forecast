@@ -6,7 +6,7 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  forn-size: 0.875rem;
+  forn-size: ${({ theme }) => theme.fontSize};
 
   form {
     margin: 0 90px;
@@ -31,7 +31,7 @@ export const FormWrapper = styled.div`
 
   .sign-in-divider {
     margin: 17px 0;
-    color: black;
+    color: ${({theme}) => theme.divider};
     width: 60%;
   }
 

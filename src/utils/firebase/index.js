@@ -1,8 +1,10 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+import { FIREBASE_API_KEY } from '@/constants'
+
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: FIREBASE_API_KEY,
   authDomain: 'weather-forecast-72443.firebaseapp.com',
   databaseURL: 'https://weather-forecast-72443.firebaseio.com',
   projectId: 'weather-forecast-72443',
@@ -52,7 +54,7 @@ export const checkUserAuth = () => {
       if (user) {
         resolve(true)
       } else {
-        resolve(false)
+        reject(false)
       }
     })
   })

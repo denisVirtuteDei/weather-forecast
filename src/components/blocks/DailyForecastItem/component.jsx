@@ -25,7 +25,7 @@ const DailyForecastItem = props => {
           <WeatherIcon src={`icons/${weatherIconCode}.png`} alt={weatherDesc} />
         </div>
         <div className='weekday'>{weekday}</div>
-        <div className='temperature'>{temp}</div>
+        <div className='temperature'>{temp}&deg;</div>
       </TodayDiv>
     </CenteredDiv>
   ) : (
@@ -34,7 +34,7 @@ const DailyForecastItem = props => {
       <div>
         <WeatherIcon src={`icons/${weatherIconCode}.png`} alt={weatherDesc} />
       </div>
-      <div>{temp}</div>
+      <div>{temp}&deg;</div>
     </CenteredDiv>
   )
 }

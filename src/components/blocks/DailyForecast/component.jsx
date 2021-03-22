@@ -14,8 +14,6 @@ const DailyForecast = () => {
   const fsettings = useSelector(state => state.forecast.forecastSettings)
   const dailyForecastList = useSelector(state => state.forecast.cityForecast)
 
-  if (!dailyForecastList.length) return <DailyForecastSuspense />
-
   useEffect(() => {
     if (geolocation.isInfoLoaded)
       dispatch(getCityWeatherForecast(geolocation.city, fsettings.forecastApi))
@@ -26,6 +24,8 @@ const DailyForecast = () => {
       dispatch(getCityWeatherForecast(geolocation.city, fsettings.forecastApi))
     }
   }, [geolocation.city, fsettings.forecastApi])
+
+  if (!dailyForecastList.length) return <DailyForecastSuspense />
 
   return (
     <Carousel options={{ freeScroll: true, contain: true, prevNextButtons: false }}>

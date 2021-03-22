@@ -3,20 +3,22 @@ import moment from 'moment'
 
 import { DatetimeWrapper } from './style'
 
+const CurrentDatetime = () => {
+  const [date, setDate] = useState(moment())
 
-export default (props) => {
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setDate(moment())
+    }, 1000)
+    return () => clearInterval(timerId)
+  }, [])
 
-	const [date, setDate] = useState(moment())
-
-	useEffect(() => {
-		const timerId = setInterval(() => { setDate(moment()) }, 1000)
-		return () => clearInterval(timerId)
-	}, [])
-
-	return (
-		<DatetimeWrapper>
-			<div className='time-div'>{date.format('HH:mm')}</div>
-			<div className='date-div'>{date.format('ddd, DD MMMM YYYY')}</div>
-		</DatetimeWrapper>
-	)
+  return (
+    <DatetimeWrapper>
+      <div className='time-div'>{date.format('HH:mm')}</div>
+      <div className='date-div'>{date.format('ddd, DD MMMM YYYY')}</div>
+    </DatetimeWrapper>
+  )
 }
+
+export default CurrentDatetime

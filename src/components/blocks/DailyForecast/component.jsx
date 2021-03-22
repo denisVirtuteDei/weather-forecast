@@ -8,49 +8,39 @@ import DailyForecastSuspense from '@/components/blocks/DailyForecastSuspense'
 
 import { getCityWeatherForecast } from '@/actions/cityForecast'
 
+const DailyForecast = () => {
+  const dispatch = useDispatch()
+  const geolocation = useSelector(state => state.geolocation)
+  const fsettings = useSelector(state => state.forecast.forecastSettings)
+  const dailyForecastList = useSelector(state => state.forecast.cityForecast)
 
-export default (props) => {
+  if (!dailyForecastList.length) return <DailyForecastSuspense />
 
-	const dispatch = useDispatch()
-	const geolocation = useSelector(state => state.geolocation)
-	const fsettings = useSelector(state => state.forecast.forecastSettings)
-	const dailyForecastList = useSelector(state => state.forecast.cityForecast)
+  useEffect(() => {
+    if (geolocation.isInfoLoaded)
+      dispatch(getCityWeatherForecast(geolocation.city, fsettings.forecastApi))
+  }, [])
 
-	if (!dailyForecastList.length) return <DailyForecastSuspense />
+  useEffect(() => {
+    if (geolocation.city.length > 0) {
+      dispatch(getCityWeatherForecast(geolocation.city, fsettings.forecastApi))
+    }
+  }, [geolocation.city, fsettings.forecastApi])
 
-	useEffect(() => {
-		if (geolocation.isInfoLoaded)
-			dispatch(getCityWeatherForecast(
-				geolocation.city,
-				fsettings.forecastApi
-			))
-	}, [])
-
-	useEffect(() => {
-		if (geolocation.city.length > 0) {
-			dispatch(getCityWeatherForecast(
-				geolocation.city,
-				fsettings.forecastApi
-			))
-		}
-	}, [geolocation.city, fsettings.forecastApi])
-
-
-
-	return (
-		<Carousel options={{ freeScroll: true, contain: true, prevNextButtons: false }}>
-			{
-				dailyForecastList.map((el, index) => {
-					return (
-						<DailyForecastItem
-							key={`${el.dayTime} ${geolocation.city}`}
-							fsettings={fsettings}
-							index={index}
-							{...el}
-						/>
-					)
-				})
-			}
-		</Carousel>
-	)
+  return (
+    <Carousel options={{ freeScroll: true, contain: true, prevNextButtons: false }}>
+      {dailyForecastList.map((el, index) => {
+        return (
+          <DailyForecastItem
+            key={`${el.dayTime} ${geolocation.city}`}
+            fsettings={fsettings}
+            index={index}
+            {...el}
+          />
+        )
+      })}
+    </Carousel>
+  )
 }
+
+export default DailyForecast

@@ -2,43 +2,40 @@ import publicIp from 'public-ip'
 import { setup } from 'axios-cache-adapter'
 
 import {
-	WEATHER_BIT_API_KEY,
-	WEATHER_BIT_API_NAME,
-	WEATHER_BIT_API_POINT,
-	GEOLOCATION_API_TOKEN,
-	GEOLOCATION_API_POINT,
-	OPEN_WEATHER_MAP_API_KEY,
-	OPEN_WEATHER_MAP_API_NAME,
-	OPEN_WEATHER_MAP_API_POINT,
-	WEATHER_API_NOT_FOUNDED_ERROR_MESSAGE,
+  WEATHER_BIT_API_NAME,
+  WEATHER_BIT_API_POINT,
+  GEOLOCATION_API_POINT,
+  OPEN_WEATHER_MAP_API_NAME,
+  OPEN_WEATHER_MAP_API_POINT,
 } from '@/constants'
 
 const axios = setup({ cache: { maxAge: 15 * 60 * 1000 } })
 
 export const getGeolocation = ip => {
-	return axios.get(GEOLOCATION_API_POINT + ip, {
-		params: { token: GEOLOCATION_API_TOKEN },
-	})
+  return axios.get(GEOLOCATION_API_POINT + ip, {
+    params: { token: process.env.REACT_APP_GEOLOCATION_TOKEN_PARAM },
+  })
 }
 
 export const getWeatherForecastByCityName = (cityName, weatherApiName) => {
-	switch (weatherApiName) {
-		case WEATHER_BIT_API_NAME:
-			return axios.get(WEATHER_BIT_API_POINT, {
-				params: {
-					city: cityName,
-					key: WEATHER_BIT_API_KEY,
-				},
-			})
-		case OPEN_WEATHER_MAP_API_NAME:
-			return axios.get(OPEN_WEATHER_MAP_API_POINT, {
-				params: {
-					q: cityName,
-					appid: OPEN_WEATHER_MAP_API_KEY,
-				},
-			})
-		default: throw Error('Unknown problem')
-	}
+  switch (weatherApiName) {
+    case WEATHER_BIT_API_NAME:
+      return axios.get(WEATHER_BIT_API_POINT, {
+        params: {
+          city: cityName,
+          key: process.env.REACT_APP_WEATHER_BIT_API_KEY,
+        },
+      })
+    case OPEN_WEATHER_MAP_API_NAME:
+      return axios.get(OPEN_WEATHER_MAP_API_POINT, {
+        params: {
+          q: cityName,
+          appid: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY,
+        },
+      })
+    default:
+      throw Error('Unknown problem')
+  }
 }
 
-export const getPublicIp = (async () => await publicIp.v4())
+export const getPublicIp = async () => await publicIp.v4()

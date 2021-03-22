@@ -10,31 +10,30 @@ import { AlertWrapper } from './style'
 
 import { removeErrorInfo } from '@/actions/error'
 
-export default (props) => {
-	const dispatch = useDispatch()
-	const errorState = useSelector((state) => state.error)
+const ErrorAlert = props => {
+  const dispatch = useDispatch()
+  const errorState = useSelector(state => state.error)
 
-	const handleClick = () => { dispatch(removeErrorInfo()) }
+  const handleClick = () => {
+    dispatch(removeErrorInfo())
+  }
 
-	return (
-		<AlertWrapper >
-			<Collapse in={errorState.isError}>
-				<Alert
-					severity='error'
-					action={
-						<IconButton
-							aria-label="close"
-							color="inherit"
-							size="small"
-							onClick={handleClick}
-						>
-							<CloseIcon fontSize="inherit" />
-						</IconButton>
-					}
-				>
-					{errorState.errorMessage}
-				</Alert>
-			</Collapse>
-		</AlertWrapper>
-	)
+  return (
+    <AlertWrapper>
+      <Collapse in={errorState.isError}>
+        <Alert
+          severity='error'
+          action={
+            <IconButton aria-label='close' color='inherit' size='small' onClick={handleClick}>
+              <CloseIcon fontSize='inherit' />
+            </IconButton>
+          }
+        >
+          {errorState.errorMessage}
+        </Alert>
+      </Collapse>
+    </AlertWrapper>
+  )
 }
+
+export default ErrorAlert

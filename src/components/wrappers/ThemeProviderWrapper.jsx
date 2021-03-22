@@ -8,17 +8,18 @@ import { lightMainTheme, darkTheme } from '@/theme'
 
 import { LIGHT_THEME_MODE } from '@/constants'
 
-export default (props) => {
+const ThemeProviderWrapper = props => {
+  const themeMode = useSelector(state => state.theme.themeMode)
+  const theme = themeMode === LIGHT_THEME_MODE ? lightMainTheme : darkTheme
 
-	const themeMode = useSelector(state => state.themeMode.actualThemeMode)
-	const theme = themeMode === LIGHT_THEME_MODE ? lightMainTheme : darkTheme
-
-	return (
-		<ThemeProvider theme={theme}>
-			<>
-				<GlobalStyles />
-				{props.children}
-			</>
-		</ThemeProvider>
-	)
+  return (
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyles />
+        {props.children}
+      </>
+    </ThemeProvider>
+  )
 }
+
+export default ThemeProviderWrapper

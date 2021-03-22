@@ -14,10 +14,10 @@ export const removeUserAuthError = () => ({ type: REMOVE_USER_AUTH_ERROR })
 
 export const signInUserWithGoogle = () => ({ type: SING_IN_USER_WITH_GOOGLE_REQUEST })
 export const signUpUserRequest = (email, password) => ({
-    type: SIGN_UP_USER_REQUEST,
-    payload: { email, password },
+  type: SIGN_UP_USER_REQUEST,
+  payload: { email, password },
 })
 export const signInUserWithEmail = (email, password) => ({
-    type: SING_IN_USER_WITH_EMAIL_REQUEST,
-    payload: { email, password },
+  type: SING_IN_USER_WITH_EMAIL_REQUEST,
+  payload: { email, password },
 })

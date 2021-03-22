@@ -31,6 +31,7 @@
         ],
         "no-unused-vars": "off",
         "operator-linebreak": "warn",
+        "no-useless-escape": "off",
         "react/jsx-closing-tag-location": 2,
         "react/jsx-max-props-per-line": [
             2,

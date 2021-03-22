@@ -5,34 +5,29 @@ import { checkUserAuth } from '@/utils/firebase'
 
 import { ROUTE_TO_SIGN_IN } from '@/constants'
 
+const PrivateRoute = ({ children, ...rest }) => {
+  const [isAuth, setIsAuth] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-export default ({ children, ...rest }) => {
+  useEffect(() => {
+    checkUserAuth()
+      .then(value => {
+        setIsAuth(value)
+        setIsLoading(false)
+      })
+      .catch(() => {
+        setIsLoading(false)
+      })
+  }, [])
 
-	const [isAuth, setIsAuth] = useState(null)
-	const [isLoading, setIsLoading] = useState(true)
+  if (isLoading) return <div>Loading...</div>
 
-	useEffect(() => {
-		checkUserAuth()
-			.then(value => {
-				setIsAuth(value)
-				setIsLoading(false)
-			})
-			.catch(() => {
-				setIsLoading(false)
-			})
-	}, [])
-
-	if (isLoading) return <div>Loading...</div>
-
-	return (
-		<Route
-			{...rest}
-			render={() =>
-				isAuth
-					? (children)
-					: (<Redirect to={{ pathname: ROUTE_TO_SIGN_IN }} />)
-			}
-		/>
-	)
+  return (
+    <Route
+      {...rest}
+      render={() => (isAuth ? children : <Redirect to={{ pathname: ROUTE_TO_SIGN_IN }} />)}
+    />
+  )
 }
 
+export default PrivateRoute

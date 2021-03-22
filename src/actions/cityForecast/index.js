@@ -5,8 +5,11 @@ export const GET_CITY_WEATHER_FORECAST_REQUEST = 'GET_CITY_WEATHER_FORECAST_REQU
 
 export const setTemperatureUnit = data => ({ type: SET_TEMPERATURE_UNIT, payload: data })
 export const setCityWeatherForecast = data => ({ type: SET_CITY_WEATHER_FORECAST, payload: data })
-export const setWeatherForecastApiName = data => ({ type: SET_WEATHER_FORECAST_API_NAME, payload: data })
+export const setWeatherForecastApiName = data => ({
+  type: SET_WEATHER_FORECAST_API_NAME,
+  payload: data,
+})
 export const getCityWeatherForecast = (cityTitle, apiName) => ({
-	type: GET_CITY_WEATHER_FORECAST_REQUEST,
-	payload: { cityTitle, apiName },
+  type: GET_CITY_WEATHER_FORECAST_REQUEST,
+  payload: { cityTitle, apiName },
 })

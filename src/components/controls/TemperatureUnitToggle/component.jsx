@@ -7,32 +7,29 @@ import FormControl from '@material-ui/core/FormControl'
 
 import { setTemperatureUnit } from '@/actions/cityForecast'
 
-import {
-	CELSIUS_TEMP_UNIT,
-	FAHRENHEIT_TEMP_UNIT,
-} from '@/constants'
+import { CELSIUS_TEMP_UNIT, FAHRENHEIT_TEMP_UNIT } from '@/constants'
 
+const TemperatureUnitToggle = props => {
+  const dispatch = useDispatch()
+  const fsettings = useSelector(state => state.forecast.forecastSettings)
 
-export default (props) => {
+  const handleTempUnitToggle = event => {
+    dispatch(setTemperatureUnit(event.target.value))
+  }
 
-	const dispatch = useDispatch()
-	const fsettings = useSelector(state => state.forecast.forecastSettings)
-
-	const handleTempUnitToggle = event => {
-		dispatch(setTemperatureUnit(event.target.value))
-	}
-
-	return (
-		<FormControl>
-			<Select
-				labelId="select-degree-label"
-				id="select-degree"
-				value={fsettings.tempUnit}
-				onChange={handleTempUnitToggle}
-			>
-				<MenuItem value={CELSIUS_TEMP_UNIT}>C</MenuItem>
-				<MenuItem value={FAHRENHEIT_TEMP_UNIT}>F</MenuItem>
-			</Select>
-		</FormControl>
-	)
+  return (
+    <FormControl>
+      <Select
+        labelId='select-degree-label'
+        id='select-degree'
+        value={fsettings.tempUnit}
+        onChange={handleTempUnitToggle}
+      >
+        <MenuItem value={CELSIUS_TEMP_UNIT}>C</MenuItem>
+        <MenuItem value={FAHRENHEIT_TEMP_UNIT}>F</MenuItem>
+      </Select>
+    </FormControl>
+  )
 }
+
+export default TemperatureUnitToggle

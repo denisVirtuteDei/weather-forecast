@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { checkUserAuth } from '@/utils/firebase'
 
@@ -36,6 +37,16 @@ const PrivateRoute = ({ children, ...rest }) => {
       render={() => (isAuth ? children : <Redirect to={{ pathname: ROUTE_TO_SIGN_IN }} />)}
     />
   )
+}
+
+PrivateRoute.propTypes = {
+  rest: PropTypes.object,
+  children: PropTypes.node.isRequired,
+}
+
+PrivateRoute.defaultProps = {
+  rest: {},
+  children: null,
 }
 
 export default PrivateRoute

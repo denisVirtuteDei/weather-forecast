@@ -29,16 +29,14 @@ const DailyForecast = () => {
 
   return (
     <Carousel options={{ freeScroll: true, contain: true, prevNextButtons: false }}>
-      {dailyForecastList.map((el, index) => {
-        return (
-          <DailyForecastItem
-            key={`${el.dayTime} ${geolocation.city}`}
-            fsettings={fsettings}
-            index={index}
-            {...el}
-          />
-        )
-      })}
+      {dailyForecastList.map((el, index) => (
+        <DailyForecastItem
+          key={`${el.dayTime} ${geolocation.city}`}
+          fsettings={fsettings}
+          index={index}
+          {...el}
+        />
+      ))}
     </Carousel>
   )
 }

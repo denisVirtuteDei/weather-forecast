@@ -10,7 +10,7 @@ import { setWeatherForecastApiName } from '@/actions/cityForecast'
 
 import { OPEN_WEATHER_MAP_API_NAME, WEATHER_BIT_API_NAME } from '@/constants'
 
-const WeatherApiToggler = props => {
+const WeatherApiToggler = () => {
   const dispatch = useDispatch()
   const fsettings = useSelector(state => state.forecast.forecastSettings)
 

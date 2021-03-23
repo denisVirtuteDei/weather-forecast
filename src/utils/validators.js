@@ -1,8 +1,8 @@
 export const emailValidator = email =>
   email.length !== 0
     ? /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-        email
-      )
+      email
+    )
       ? ''
       : 'Incorrect email'
     : ''

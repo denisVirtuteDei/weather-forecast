@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { checkUserAuth } from '@/utils/firebase'
 
@@ -8,14 +9,12 @@ import { setErrorInfo } from '@/actions/error'
 
 import { ROUTE_TO_SIGN_IN } from '@/constants'
 
-import { childrenPropType } from '@/propTypes'
-
 const PrivateRoute = ({ children, ...rest }) => {
   const dispatch = useDispatch()
   const [isAuth, setIsAuth] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const USER_NOT_LOGGED_IN_ERROR = "User isn't logged in"
+  const USER_NOT_LOGGED_IN_ERROR = 'User isn\'t logged in'
 
   useEffect(() => {
     checkUserAuth()
@@ -40,6 +39,14 @@ const PrivateRoute = ({ children, ...rest }) => {
   )
 }
 
-PrivateRoute.propTypes = childrenPropType
+PrivateRoute.propTypes = {
+  rest: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
+PrivateRoute.defaultProps = {
+  rest: {},
+  children: null,
+}
 
 export default PrivateRoute

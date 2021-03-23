@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 
-import { childrenPropType } from '@/propTypes'
+import { childrenPropType, defaultChildrenProp } from '@/propTypes'
 
 const UserMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -51,5 +51,6 @@ const UserMenu = props => {
 }
 
 UserMenu.propTypes = childrenPropType
+UserMenu.defaultProps = defaultChildrenProp
 
 export default UserMenu

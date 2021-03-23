@@ -11,7 +11,7 @@ import { lightTheme, darkTheme } from '@/theme'
 
 import { LIGHT_THEME_MODE } from '@/constants'
 
-import { childrenPropType } from '@/propTypes'
+import { childrenPropType, defaultChildrenProp } from '@/propTypes'
 
 const ThemeProviderWrapper = props => {
   const themeMode = useSelector(state => state.theme.themeMode)
@@ -31,5 +31,6 @@ const ThemeProviderWrapper = props => {
 }
 
 ThemeProviderWrapper.propTypes = childrenPropType
+ThemeProviderWrapper.defaultProps = defaultChildrenProp
 
 export default ThemeProviderWrapper

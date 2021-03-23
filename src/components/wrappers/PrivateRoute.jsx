@@ -40,7 +40,7 @@ const PrivateRoute = ({ children, ...rest }) => {
 }
 
 PrivateRoute.propTypes = {
-  rest: PropTypes.object.isRequired,
+  rest: PropTypes.object,
   children: PropTypes.node.isRequired,
 }
 

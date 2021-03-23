@@ -1,54 +1,43 @@
-import React from 'react';
+import React from 'react'
+import moment from 'moment'
 
-import { CenteredDiv, TodayDiv, WeatherIcon } from './style';
+import { CenteredDiv, TodayDiv, WeatherIcon } from './style'
 
-import {
-    epochToShortWeekday,
-    tempToAcceptableForm
-} from '../../../utils/dailyForecastMappers';
+import { tempToAcceptableForm, celsiusToFahrenheit } from '@/utils/weatherDataMappers'
 
-import { CELSIUS_TEMP_UNIT } from '../../../constants';
+import { CELSIUS_TEMP_UNIT } from '@/constants'
+import { Typography } from '@material-ui/core'
 
-const celsiusToFahrenheit = tempValue => Math.round(tempValue * 1.8 + 32)
+const DailyForecastItem = props => {
+  const MILLISECONDS_IN_SECONDS = 1000
 
+  const weatherDesc = props.weather.description
+  const weatherIconCode = props.weather.icon || 'unknown'
+  const weekday = moment(props.dayTime * MILLISECONDS_IN_SECONDS).format('ddd')
+  const temp =
+    props.fsettings.tempUnit === CELSIUS_TEMP_UNIT
+      ? tempToAcceptableForm(props.temp)
+      : tempToAcceptableForm(celsiusToFahrenheit(props.temp))
 
-export default (props) => {
-
-    const weekday = epochToShortWeekday(props.dayTime);
-    const weatherIcon = props.weather.icon;
-    const weatherDesc = props.weather.description;
-    const temp = props.fsettings.tempUnit === CELSIUS_TEMP_UNIT ?
-        tempToAcceptableForm(props.temp) :
-        tempToAcceptableForm(celsiusToFahrenheit(props.temp));
-
-    return (
-        props.index === 0
-            ? (
-                <CenteredDiv>
-                    <TodayDiv>
-                        <div className='icon'>
-                            <WeatherIcon 
-                                src={weatherIcon} 
-                                alt={weatherDesc} 
-                                api={props.fsettings.forecastApi} 
-                            />
-                        </div>
-                        <div>{weekday}</div>
-                        <div>{temp}</div>
-                    </TodayDiv>
-                </CenteredDiv>
-            ) : (
-                <CenteredDiv>
-                    <div>{weekday}</div>
-                    <div>
-                        <WeatherIcon 
-                            src={weatherIcon} 
-                            alt={weatherDesc} 
-                            api={props.fsettings.forecastApi} 
-                        />
-                    </div>
-                    <div>{temp}</div>
-                </CenteredDiv>
-            )
-    )
+  return props.index === 0 ? (
+    <CenteredDiv>
+      <TodayDiv>
+        <div className='icon'>
+          <WeatherIcon src={`icons/${weatherIconCode}.png`} alt={weatherDesc} />
+        </div>
+        <Typography variant='h4'>{weekday}</Typography>
+        <Typography variant='h5'>{temp}&deg;</Typography>
+      </TodayDiv>
+    </CenteredDiv>
+  ) : (
+    <CenteredDiv>
+      <Typography variant='subtitle1'>{weekday}</Typography>
+      <div>
+        <WeatherIcon src={`icons/${weatherIconCode}.png`} alt={weatherDesc} />
+      </div>
+      <Typography variant='subtitle1'>{temp}&deg;</Typography>
+    </CenteredDiv>
+  )
 }
+
+export default DailyForecastItem

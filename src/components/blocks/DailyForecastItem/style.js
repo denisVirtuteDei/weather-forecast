@@ -1,34 +1,36 @@
-import styled from 'styled-components';
-import { mappingIconUrl } from '../../../utils/dataMappers';
+import styled from 'styled-components'
 
 export const CenteredDiv = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    div {
-        text-align: center;  
-    }
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  div {
+    text-align: center;
+  }
 `
 
 export const TodayDiv = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5px;
-    grid-auto-rows: (50px, auto);
-    align-items: center;
-    justify-content: center;
-    
-    .icon {
-        grid-column-start: span 1;
-        grid-row-start: span 2;
-        align-self: center;
-        justify-self: end;
-    }
+  margin-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 5px;
+  align-items: center;
+
+  .icon {
+    grid-column-start: span 1;
+    grid-row-start: span 2;
+    justify-self: flex-end;
+    width: 110px;
+    height: 110px;
+  }
 `
 
-export const WeatherIcon = styled.img.attrs((props) => ({
-    src: mappingIconUrl(props.src, props.api)
+export const WeatherIcon = styled.img.attrs(props => ({
+  src: props.src,
 }))`
-    alt: ${props => props.alt};
+  width: 100px;
+  height: 100px;
+  alt: ${props => props.alt};
 `

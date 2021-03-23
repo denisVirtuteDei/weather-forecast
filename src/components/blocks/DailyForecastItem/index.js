@@ -1,3 +1,3 @@
-import DailyForecastItem from './component';
+import DailyForecastItem from './component'
 
-export default DailyForecastItem; 
+export default DailyForecastItem

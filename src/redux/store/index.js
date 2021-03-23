@@ -1,27 +1,26 @@
-import createSagaMiddleware from 'redux-saga';
-import { applyMiddleware, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga'
+import { applyMiddleware, createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-import rootSaga from '../../sagas';
-import rootReducer from '../reducers';
+import rootSaga from '@/sagas'
+import rootReducer from '@/redux/reducers'
 
-import { loadState, saveState } from '../../utils/localstorage';
-
+import { loadStateFromSessionStorage, saveStateToSessionStorage } from '@/utils/sessionstorage'
 
 export const makeStore = () => {
-    const sagaMiddleware = createSagaMiddleware();
-    const persistedState = loadState();
-    const store = createStore(
-        rootReducer,
-        persistedState,
-        composeWithDevTools(applyMiddleware(sagaMiddleware))
-    )
+  const sagaMiddleware = createSagaMiddleware()
+  const persistedState = loadStateFromSessionStorage()
+  const store = createStore(
+    rootReducer,
+    persistedState,
+    composeWithDevTools(applyMiddleware(sagaMiddleware))
+  )
 
-    sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga)
 
-    store.subscribe(() => {
-        saveState({ user: store.getState().user});
-    })
+  store.subscribe(() => {
+    saveStateToSessionStorage(store.getState())
+  })
 
-    return store
+  return store
 }

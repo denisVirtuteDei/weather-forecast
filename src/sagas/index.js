@@ -1,18 +1,20 @@
-import { all } from 'redux-saga/effects';
+import { all } from 'redux-saga/effects'
 
 import {
-    signInAnonUserRequestWatcher,
-    signInUserWithGoogleRequestWatcher
-} from './user';
+  signUpUserWithEmailRequestWatcher,
+  signInUserWithEmailRequestWatcher,
+  signInUserWithGoogleRequestWatcher,
+} from './user'
 
-import { getUserGeolocationWatcher } from './geolocation';
-import { getCityForecastRequestWatcher } from './cityForecast';
+import { getUserGeolocationWatcher } from './geolocation'
+import { getCityWeatherForecastRequestWatcher } from './cityForecast'
 
 export default function* rootSaga() {
-    yield all([
-        signInAnonUserRequestWatcher(),
-        signInUserWithGoogleRequestWatcher(),
-        getUserGeolocationWatcher(),
-        getCityForecastRequestWatcher(),
-    ])
+  yield all([
+    getUserGeolocationWatcher(),
+    signUpUserWithEmailRequestWatcher(),
+    signInUserWithEmailRequestWatcher(),
+    signInUserWithGoogleRequestWatcher(),
+    getCityWeatherForecastRequestWatcher(),
+  ])
 }

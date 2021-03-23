@@ -1,3 +1,3 @@
-import { DateTime } from './component';
+import CurrentDatetime from './component'
 
-export default DateTime;
+export default CurrentDatetime

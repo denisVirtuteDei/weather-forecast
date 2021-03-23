@@ -1,11 +1,15 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import user from './userReducer';
-import geolocation from './geolocationReducer';
-import forecast from './cityForecastReducer';
+import user from './userReducer'
+import error from './errorReducer'
+import theme from './themeModeReducer'
+import forecast from './cityForecastReducer'
+import geolocation from './geolocationReducer'
 
-export default combineReducers({ 
-    user,
-    geolocation,
-    forecast,
+export default combineReducers({
+  user,
+  error,
+  theme,
+  forecast,
+  geolocation,
 })

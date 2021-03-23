@@ -1,49 +1,54 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects'
+
+import { setErrorInfo } from '@/actions/error'
+import {
+  setUserAuthInfo,
+  SIGN_UP_USER_REQUEST,
+  SING_IN_USER_WITH_EMAIL_REQUEST,
+  SING_IN_USER_WITH_GOOGLE_REQUEST,
+} from '@/actions/user'
 
 import {
-    signInAnonymouslyUsingFirebase,
-    singInWithGoogleAccountUsingFirebase
-} from '../utils/firebase';
-
-import {
-    SING_IN_ANON_USER_REQUEST,
-    SING_IN_USER_VIA_GOOGLE_REQUEST,
-    setUserAuthInfo,
-    setUserAuthError
-} from '../actions/user';
-
-import { 
-    mappingUserData, 
-    mappingUserErrorInfo 
-} from '../utils/dataMappers';
-
-export function* signInAnonUserRequestWatcher() {
-    yield takeEvery(
-        SING_IN_ANON_USER_REQUEST,
-        signInAnonUserWorker
-    );
-}
-
-function* signInAnonUserWorker() {
-    const data = yield call(signInAnonymouslyUsingFirebase);
-    yield put(setUserAuthInfo(data));
-}
+  signUpWithEmailUsingFirebase,
+  singInWithEmailUsingFirebase,
+  singInWithGoogleAccountUsingFirebase,
+} from '@/utils/firebase'
 
 export function* signInUserWithGoogleRequestWatcher() {
-    yield takeEvery(
-        SING_IN_USER_VIA_GOOGLE_REQUEST,
-        signInUserViaGoogleWorker
-    );
+  yield takeEvery(SING_IN_USER_WITH_GOOGLE_REQUEST, signInUserWithGoogleWorker)
 }
 
-function* signInUserViaGoogleWorker() {
-    try {
-        const data = yield call(singInWithGoogleAccountUsingFirebase);
-        yield put(setUserAuthInfo(mappingUserData(data)));
-    } catch (err) {
-        yield put(setUserAuthError(mappingUserErrorInfo(err)));
-    }
-
+function* signInUserWithGoogleWorker() {
+  try {
+    const userData = yield call(singInWithGoogleAccountUsingFirebase)
+    yield put(setUserAuthInfo(userData))
+  } catch (error) {
+    yield put(setErrorInfo(error.message))
+  }
 }
 
+export function* signInUserWithEmailRequestWatcher() {
+  yield takeEvery(SING_IN_USER_WITH_EMAIL_REQUEST, signInUserWithEmailWorker)
+}
 
+function* signInUserWithEmailWorker({ payload }) {
+  try {
+    const userData = yield call(singInWithEmailUsingFirebase, payload.email, payload.password)
+    yield put(setUserAuthInfo(userData))
+  } catch (error) {
+    yield put(setErrorInfo(error.message))
+  }
+}
+
+export function* signUpUserWithEmailRequestWatcher() {
+  yield takeEvery(SIGN_UP_USER_REQUEST, signUpUserWithEmailWorker)
+}
+
+function* signUpUserWithEmailWorker({ payload }) {
+  try {
+    const userData = yield call(signUpWithEmailUsingFirebase, payload.email, payload.password)
+    yield put(setUserAuthInfo(userData))
+  } catch (error) {
+    yield put(setErrorInfo(error.message))
+  }
+}

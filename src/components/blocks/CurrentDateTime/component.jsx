@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import moment from 'moment'
 
-import { Div } from './style';
+import { DatetimeWrapper } from './style'
+import { Typography } from '@material-ui/core'
 
-import { datetimeCalculation } from '../../../utils/datetimeCalculation';
+const CurrentDatetime = () => {
+  const [date, setDate] = useState(moment())
 
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setDate(moment())
+    }, 1000)
+    return () => clearInterval(timerId)
+  }, [])
 
-export const DateTime = (props) => {
-
-    const [date, setDate] = useState({});
-
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            setDate(datetimeCalculation());
-        }, 1000)
-
-        return () => clearInterval(timerId);
-    }, [])
-
-    return (
-        <Div>
-            <div className='time-div'>{`${date.hour}:${date.min}`}</div>
-            <div className='date-div'>{`${date.day}-${date.month}-${date.year}`}</div>
-        </Div>
-    )
+  return (
+    <DatetimeWrapper>
+      <Typography variant='h4'>{date.format('HH:mm')}</Typography>
+      <Typography variant='h5'>{date.format('ddd, DD MMMM YYYY')}</Typography>
+    </DatetimeWrapper>
+  )
 }
+
+export default CurrentDatetime

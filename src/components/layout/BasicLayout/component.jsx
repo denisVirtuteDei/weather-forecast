@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { ImgContainer } from './style'
+
 import { Container } from '@material-ui/core'
 
 import ErrorAlert from '@/components/blocks/ErrorAlert'
 
-import { ImgContainer } from './style'
+import { childrenPropType } from '@/propTypes'
 
 const BasicLayout = props => (
   <ImgContainer>
@@ -14,5 +16,7 @@ const BasicLayout = props => (
     </Container>
   </ImgContainer>
 )
+
+BasicLayout.propTypes = childrenPropType
 
 export default BasicLayout

@@ -9,7 +9,7 @@ import { setTemperatureUnit } from '@/actions/cityForecast'
 
 import { CELSIUS_TEMP_UNIT, FAHRENHEIT_TEMP_UNIT } from '@/constants'
 
-const TemperatureUnitToggle = props => {
+const TemperatureUnitToggle = () => {
   const dispatch = useDispatch()
   const fsettings = useSelector(state => state.forecast.forecastSettings)
 

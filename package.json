@@ -21,6 +21,7 @@
     "flickity": "^2.2.2",
     "moment": "^2.29.1",
     "prettier": "^1.19.1",
+    "prop-types": "^15.7.2",
     "public-ip": "^4.0.3",
     "react": "^17.0.1",
     "react-app-rewire-alias": "^1.0.1",

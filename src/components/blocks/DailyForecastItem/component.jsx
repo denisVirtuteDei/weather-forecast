@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 
 import { CenteredDiv, TodayDiv, WeatherIcon } from './style'
 
@@ -38,6 +39,14 @@ const DailyForecastItem = props => {
       <Typography variant='subtitle1'>{temp}&deg;</Typography>
     </CenteredDiv>
   )
+}
+
+DailyForecastItem.propTypes = {
+  temp: PropTypes.number,
+  index: PropTypes.number,
+  weather: PropTypes.object,
+  dayTime: PropTypes.object,
+  fsettings: PropTypes.object,
 }
 
 export default DailyForecastItem

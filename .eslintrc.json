@@ -29,6 +29,7 @@
       {
         "objects": "only-multiline",
         "exports": "only-multiline",
+        "arrays": "always-multiline",
         "imports": "always-multiline"
       }
     ],

@@ -10,7 +10,7 @@ import { AlertWrapper } from './style'
 
 import { removeErrorInfo } from '@/actions/error'
 
-const ErrorAlert = props => {
+const ErrorAlert = () => {
   const dispatch = useDispatch()
   const errorState = useSelector(state => state.error)
 

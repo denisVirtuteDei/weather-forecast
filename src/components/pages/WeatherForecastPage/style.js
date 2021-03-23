@@ -7,7 +7,7 @@ export const ReducedGrid = styled(Grid)`
   }
 
   .daily-forecast-container {
-    background-color: ${({theme}) => theme.palette.action.disabledBackground};
+    background-color: ${({ theme }) => theme.palette.action.disabledBackground};
   }
 
   .settings-block-divider {

@@ -1,9 +1,9 @@
 import React from 'react'
 
+import { ReducedGrid } from './style'
+
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
-
-import { ReducedGrid } from './style'
 
 import Appbar from '@/components/blocks/Appbar'
 import DateTime from '@/components/blocks/CurrentDatetime'

@@ -7,11 +7,11 @@ import ThemeProviderWrapper from './components/wrappers/ThemeProviderWrapper'
 import { makeStore } from './redux/store'
 
 const App = () => (
-	<Provider store={makeStore()}>
-		<ThemeProviderWrapper>
-			<Router />
-		</ThemeProviderWrapper>
-	</Provider>
+  <Provider store={makeStore()}>
+    <ThemeProviderWrapper>
+      <Router />
+    </ThemeProviderWrapper>
+  </Provider>
 )
 
 export default App

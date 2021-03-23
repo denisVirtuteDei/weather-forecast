@@ -1,64 +1,51 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
 
-import { AppBar, Divider, MenuItem, Typography } from '@material-ui/core'
+import Menu from '@material-ui/core/Menu'
+import IconButton from '@material-ui/core/IconButton'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 
-import ThemeToggler from '@/components/controls/ThemeToggler'
-import AppbarUserMenu from '@/components/controls/AppbarUserMenu'
+const UserMenu = props => {
+  const [anchorEl, setAnchorEl] = useState(null)
 
-import { ToolBar } from './style'
+  const isMenuOpen = Boolean(anchorEl)
 
-import {removeErrorInfo} from '@/actions/error'
+  const handleMenuClose = () => {
+    setAnchorEl(null)
+  }
+  const handleMenuClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
 
-import {
-	singOutUsingFirebase,
-	getAuthUserInfo,
-} from '@/utils/firebase'
-
-import { ROUTE_TO_SIGN_IN } from '@/constants'
-
-import { signOutUserRequest } from '@/actions/user'
-
-
-export default (props) => {
-
-	const history = useHistory()
-	const dispatch = useDispatch()
-	const currentUser = getAuthUserInfo()
-
-	const handleSignOutClick = () => {
-		dispatch(signOutUserRequest())
-		dispatch(removeErrorInfo())
-		singOutUsingFirebase()
-		history.push(ROUTE_TO_SIGN_IN)
-	}
-
-	return (
-		<AppBar position="static">
-			<ToolBar >
-				<ThemeToggler />
-
-				<div className='user-block' >
-					<Typography variant="h6" >
-						{currentUser.displayName || currentUser.email || 'Anonymus'}
-					</Typography>
-					<AppbarUserMenu id='user-menu'>
-						<MenuItem onClick={handleSignOutClick}>Log out</MenuItem>
-					</AppbarUserMenu>
-				</div>
-
-				<div className='user-block-collapse' >
-					<AppbarUserMenu id='user-menu-collapse'>
-						<MenuItem disabled>
-							{currentUser.displayName || currentUser.email || 'Anonymus'}
-						</MenuItem>
-						<Divider />
-						<MenuItem onClick={handleSignOutClick}>Log out</MenuItem>
-					</AppbarUserMenu>
-				</div>
-
-			</ToolBar>
-		</AppBar>
-	)
+  return (
+    <>
+      <IconButton
+        aria-label='account of current user'
+        aria-controls='menu-appbar'
+        aria-haspopup='true'
+        onClick={handleMenuClick}
+        color='inherit'
+      >
+        <AccountCircle />
+      </IconButton>
+      <Menu
+        id='menu-appbar'
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        {props.children}
+      </Menu>
+    </>
+  )
 }
+
+export default UserMenu

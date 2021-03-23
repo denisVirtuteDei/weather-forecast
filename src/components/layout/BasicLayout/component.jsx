@@ -6,11 +6,13 @@ import ErrorAlert from '@/components/blocks/ErrorAlert'
 
 import { ImgContainer } from './style'
 
-export default (props) => (
-	<ImgContainer >
-		<ErrorAlert />
-		<Container className='centered-box' maxWidth='sm'>
-			{props.children}
-		</Container>
-	</ImgContainer>
+const BasicLayout = props => (
+  <ImgContainer>
+    <ErrorAlert />
+    <Container className='centered-box' maxWidth='sm'>
+      {props.children}
+    </Container>
+  </ImgContainer>
 )
+
+export default BasicLayout

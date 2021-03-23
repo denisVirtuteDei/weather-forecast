@@ -1,4 +1,5 @@
 export * from './routes'
-export * from './nameAliases'
+export * from './apiKeys'
 export * from './endpoints'
 export * from './imgSources'
+export * from './nameAliases'

@@ -1,24 +1,31 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+
+import { CssBaseline } from '@material-ui/core'
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+
 import { ThemeProvider } from 'styled-components'
 
 import GlobalStyles from '@/globalStyles'
-
-import { lightMainTheme, darkTheme } from '@/theme'
+import { lightTheme, darkTheme } from '@/theme'
 
 import { LIGHT_THEME_MODE } from '@/constants'
 
-export default (props) => {
+const ThemeProviderWrapper = props => {
+  const themeMode = useSelector(state => state.theme.themeMode)
+  const theme = themeMode === LIGHT_THEME_MODE ? lightTheme : darkTheme
 
-	const themeMode = useSelector(state => state.themeMode.actualThemeMode)
-	const theme = themeMode === LIGHT_THEME_MODE ? lightMainTheme : darkTheme
-
-	return (
-		<ThemeProvider theme={theme}>
-			<>
-				<GlobalStyles />
-				{props.children}
-			</>
-		</ThemeProvider>
-	)
+  return (
+    <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyles />
+          <CssBaseline />
+          {props.children}
+        </>
+      </ThemeProvider>
+    </MuiThemeProvider>
+  )
 }
+
+export default ThemeProviderWrapper

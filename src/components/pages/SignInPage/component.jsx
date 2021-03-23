@@ -122,16 +122,18 @@ const SingInPage = () => {
             />
           ) : (
             <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
+              control={<Checkbox value='remember' color='secondary' />}
               label='Remember me'
             />
           )}
           <Button fullWidth type='submit' color='primary' variant='contained'>
             {isSignUp ? 'Sign up' : 'Log in'}
           </Button>
-          <Link variant='body2' onClick={handleSignUpClick}>
-            {isSignUp ? 'Already have an account? Sign in' : 'Don\'t have an account? Sign Up'}
-          </Link>
+          <div className='link'>
+            <Link variant='body2' onClick={handleSignUpClick}>
+              {isSignUp ? 'Already have an account? Sign in' : 'Don\'t have an account? Sign Up'}
+            </Link>
+          </div>
         </form>
         {isSignUp ? null : (
           <>

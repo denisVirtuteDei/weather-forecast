@@ -6,32 +6,21 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  forn-size: ${({ theme }) => theme.fontSize};
 
   form {
     margin: 0 90px;
 
-    .MuiFormLabel-root {
-      color: currentColor;
-    }
-
-    .MuiInputBase-root {
-      color: currentColor;
-      .MuiOutlinedInput-input {
-        &:focus {
-          color: currentColor;
-        }
+    .link {
+      padding-top: 5px;
+      a {
+        color: ${({ theme }) => theme.palette.text.primary};
+        cursor: pointer;
       }
-    }
-
-    a {
-      justify-content: flex-end;
     }
   }
 
   .sign-in-divider {
     margin: 17px 0;
-    color: ${({theme}) => theme.divider};
     width: 60%;
   }
 

@@ -17,7 +17,6 @@ export const TodayDiv = styled.div`
   grid-template-columns: 1fr auto;
   grid-gap: 5px;
   align-items: center;
-  font-size: 2rem;
 
   .icon {
     grid-column-start: span 1;

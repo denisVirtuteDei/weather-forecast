@@ -2,16 +2,17 @@ import { takeEvery, call, put } from 'redux-saga/effects'
 
 import { setErrorInfo } from '@/actions/error'
 import {
-  signUpWithEmailUsingFirebase,
-  singInWithEmailUsingFirebase,
-  singInWithGoogleAccountUsingFirebase,
-} from '@/utils/firebase'
-import {
   setUserAuthInfo,
   SIGN_UP_USER_REQUEST,
   SING_IN_USER_WITH_EMAIL_REQUEST,
   SING_IN_USER_WITH_GOOGLE_REQUEST,
 } from '@/actions/user'
+
+import {
+  signUpWithEmailUsingFirebase,
+  singInWithEmailUsingFirebase,
+  singInWithGoogleAccountUsingFirebase,
+} from '@/utils/firebase'
 
 export function* signInUserWithGoogleRequestWatcher() {
   yield takeEvery(SING_IN_USER_WITH_GOOGLE_REQUEST, signInUserWithGoogleWorker)

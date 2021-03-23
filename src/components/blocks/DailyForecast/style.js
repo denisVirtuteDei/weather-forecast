@@ -14,13 +14,11 @@ export const Carousel = styled(Flickity)`
   .flickity-viewport {
     overflow: hidden;
     position: relative;
-    height: 100%;
   }
 
   .flickity-slider {
     display: flex;
     align-items: center;
-    font-size: ${({ theme }) => theme.sliderFontSize};
     width: 100%;
     height: 100%;
   }
@@ -51,7 +49,6 @@ export const Carousel = styled(Flickity)`
 
   .flickity-page-dots {
     width: 100%;
-    bottom: -25px;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -68,7 +65,7 @@ export const Carousel = styled(Flickity)`
     width: 10px;
     height: 10px;
     margin: 0 8px;
-    background: ${({theme}) => theme.flickityDots};
+    background: ${({ theme }) => theme.palette.text.primary};
     border-radius: 50%;
     opacity: 0.25;
     cursor: pointer;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 
 import { DatetimeWrapper } from './style'
+import { Typography } from '@material-ui/core'
 
 const CurrentDatetime = () => {
   const [date, setDate] = useState(moment())
@@ -15,8 +16,8 @@ const CurrentDatetime = () => {
 
   return (
     <DatetimeWrapper>
-      <div className='time-div'>{date.format('HH:mm')}</div>
-      <div className='date-div'>{date.format('ddd, DD MMMM YYYY')}</div>
+      <Typography variant='h4'>{date.format('HH:mm')}</Typography>
+      <Typography variant='h5'>{date.format('ddd, DD MMMM YYYY')}</Typography>
     </DatetimeWrapper>
   )
 }
